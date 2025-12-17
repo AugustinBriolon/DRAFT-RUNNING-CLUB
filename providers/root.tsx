@@ -11,7 +11,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   return (
     <QueryProvider>
       <PerformanceProvider>
-        {isScreenLoader && <ScreenLoader />}
+        {/* {isScreenLoader && <ScreenLoader />} */}
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </PerformanceProvider>
     </QueryProvider>

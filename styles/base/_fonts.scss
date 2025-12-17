@@ -1,5 +1,11 @@
 @font-face {
-  src: url('/fonts/Sample.otf') format('opentype');
-  font-family: 'Sample';
+  src: url('/fonts/impact.ttf') format('truetype');
+  font-family: 'Impact';
+  font-display: swap;
+}
+
+@font-face {
+  src: url('/fonts/bounded/bounded.ttf') format('truetype');
+  font-family: 'Bounded';
   font-display: swap;
 }

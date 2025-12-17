@@ -10,7 +10,8 @@
   --y-half-default: calc(var(--y-default) / 2);
 
   /* FONTS */
-  --font-sample: 'Sample', sans-serif;
+  --font-impact: 'Impact', sans-serif;
+  --font-bounded: 'Bounded', sans-serif;
 
   /* COLORS */
   --color-black: #000;
@@ -28,7 +29,8 @@
   --color-white: #fff;
 
   /* FONTS */
-  --font-sample: var(--font-sample);
+  --font-impact: var(--font-impact);
+  --font-bounded: var(--font-bounded);
 
   /* PADDING */
   --padding-x-half-default: var(--x-half-default);
