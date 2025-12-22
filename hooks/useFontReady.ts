@@ -4,8 +4,10 @@ export function useFontReady() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    document.fonts.load('1rem "Sample"').then(() => {
-      setReady(true);
+    document.fonts.load('1rem "Impact"').then(() => {
+      document.fonts.load('1rem "Bounded"').then(() => {
+        setReady(true);
+      });
     });
   }, []);
 

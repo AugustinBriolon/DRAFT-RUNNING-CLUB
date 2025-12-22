@@ -14,19 +14,18 @@
   --font-bounded: 'Bounded', sans-serif;
 
   /* COLORS */
-  --color-black: #000;
-  --color-white: #fff;
+  --color-black: #101010;
+  --color-white: #F7F7F7;
 }
 
 @theme {
   /* COLORS */
   /* Debug */
-  --color-red: #ff5142;
-  --color-blue: #001eff;
+  --color-red: #760705;
 
   /* Primary */
-  --color-black: #000;
-  --color-white: #fff;
+  --color-black: #101010;
+  --color-white: #F7F7F7;
 
   /* FONTS */
   --font-impact: var(--font-impact);
