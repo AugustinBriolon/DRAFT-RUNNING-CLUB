@@ -1,4 +1,5 @@
 import { useGSAP } from '@gsap/react';
+import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useRef } from 'react';
@@ -13,30 +14,102 @@ interface AnimatedLinkProps {
 const AnimatedLink = ({ href, children, className = '', isJoinUs = false }: AnimatedLinkProps) => {
   const linkRef = useRef<HTMLAnchorElement>(null);
   const pathRef = useRef(null);
-  const { contextSafe } = useGSAP();
+  const { contextSafe } = useGSAP({ scope: linkRef });
 
   const ARROW_PATH = 'm9 18 6-6-6-6';
   const PLUS_PATH = 'M5 12h14M12 5v14';
 
+  const getText = (text: string, isTop = false) => {
+    return text.split('').map((char, index) => (
+      <span key={index} className={isTop ? 'textFromTop' : 'textFromBottom'}>
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ));
+  };
+
   const handleMouseEnter = contextSafe(() => {
+    if (!linkRef.current) return;
+
+    const topLetters = linkRef.current.querySelectorAll('.textFromTop');
+    const bottomLetters = linkRef.current.querySelectorAll('.textFromBottom');
+
+    const tl = gsap.timeline();
+
     if (pathRef.current && isJoinUs) {
-      gsap.to(pathRef.current, {
+      tl.to(pathRef.current, {
         morphSVG: PLUS_PATH,
         duration: 0.3,
         ease: 'power2.inOut',
       });
     }
+
+    tl.to(
+      topLetters,
+      {
+        yPercent: -100,
+        stagger: 0.01,
+        duration: 0.3,
+        ease: 'power2.inOut',
+      },
+      '<',
+    );
+
+    tl.to(
+      bottomLetters,
+      {
+        yPercent: 0,
+        stagger: 0.01,
+        duration: 0.3,
+        ease: 'power2.inOut',
+      },
+      '<',
+    );
   });
 
   const handleMouseLeave = contextSafe(() => {
+    if (!linkRef.current) return;
+
+    const topLetters = linkRef.current.querySelectorAll('.textFromTop');
+    const bottomLetters = linkRef.current.querySelectorAll('.textFromBottom');
+
+    const tl = gsap.timeline();
+
     if (pathRef.current && isJoinUs) {
-      gsap.to(pathRef.current, {
+      tl.to(pathRef.current, {
         morphSVG: ARROW_PATH,
         duration: 0.3,
         ease: 'power2.inOut',
       });
     }
+
+    tl.to(
+      topLetters,
+      {
+        yPercent: 0,
+        stagger: 0.01,
+        duration: 0.3,
+        ease: 'power2.inOut',
+      },
+      '<',
+    );
+
+    tl.to(
+      bottomLetters,
+      {
+        yPercent: 100,
+        stagger: 0.01,
+        duration: 0.3,
+        ease: 'power2.inOut',
+      },
+      '<',
+    );
   });
+
+  useGSAP(() => {
+    if (!linkRef.current) return;
+    const bottomLetters = linkRef.current.querySelectorAll('.textFromBottom');
+    gsap.set(bottomLetters, { yPercent: 100 });
+  }, []);
 
   return (
     <Link
@@ -46,14 +119,12 @@ const AnimatedLink = ({ href, children, className = '', isJoinUs = false }: Anim
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {children.split('').map((char, index) => (
-        <span key={index}>{char}</span>
-      ))}
-      <span className="hidden">
-        {children.split('').map((char, index) => (
-          <span key={index}>{char}</span>
-        ))}
-      </span>
+      <div className="relative overflow-hidden">
+        <span className="inline-flex overflow-hidden">{getText(children, true)}</span>
+        <span className="absolute inset-0 inline-flex cursor-pointer overflow-hidden text-xs">
+          {getText(children, false)}
+        </span>
+      </div>
       {isJoinUs && (
         <svg
           className="h-5 w-5"
