@@ -143,7 +143,7 @@ export default function BurgerMenu() {
   return (
     <div className="relative md:hidden">
       {/* Bouton Menu/Close */}
-      <div className="relative z-20 bg-white px-5 py-1.5" onClick={handleToggleMenu}>
+      <div className="relative z-9 bg-white px-5 py-1.5" onClick={handleToggleMenu}>
         <span
           ref={menuBouttonRef}
           className="font-bounded relative inline-flex w-12 justify-center overflow-hidden"
@@ -158,7 +158,7 @@ export default function BurgerMenu() {
       {/* Fenêtre du menu */}
       <div
         ref={menuRef}
-        className="will-change absolute top-0 right-0 z-10 origin-top-right overflow-hidden bg-white"
+        className="will-change absolute top-0 right-0 z-8 origin-top-right overflow-hidden bg-white"
         style={{ perspective: '120px', perspectiveOrigin: 'bottom' }}
       >
         {/* Navigation */}

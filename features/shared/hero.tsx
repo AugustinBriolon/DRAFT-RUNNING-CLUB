@@ -69,6 +69,13 @@ const Hero = () => {
         },
         '<',
       )
+      .to(
+        titleRef.current,
+        {
+          zIndex: 5,
+        },
+        '<',
+      )
       .from(
         [splitDescription.lines, copyright],
         {
@@ -115,7 +122,7 @@ const Hero = () => {
             <h1
               ref={titleRef}
               aria-label="DRIFT RUNNING CLUB/"
-              className="z-9 flex origin-top-right flex-col items-end gap-1 text-white md:origin-top-left"
+              className="z-11 flex origin-top-right flex-col items-end gap-1 text-white md:origin-top-left"
             >
               <div className="overflow-hidden">
                 <svg
@@ -191,7 +198,7 @@ const Hero = () => {
       </div>
       <div
         ref={screenLoaderRef}
-        className="fixed inset-0 z-8 flex items-center justify-center bg-black"
+        className="fixed inset-0 z-10 flex items-center justify-center bg-black"
       ></div>
     </div>
   );
