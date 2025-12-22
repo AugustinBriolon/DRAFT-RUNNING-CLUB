@@ -1,4 +1,5 @@
 import { usePerformance } from '@/providers/performance.provider';
+import { PERFORMANCE_LEVEL } from '@/hooks/usePerformance';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -7,10 +8,11 @@ import { useRef, useState } from 'react';
 const Hero = () => {
   const screenLoaderRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
+  const joinUsRef = useRef<HTMLDivElement>(null);
   const textTopRef = useRef<HTMLDivElement>(null);
   const textBottomRef = useRef<HTMLDivElement>(null);
   const [isAnimationFinished, setIsAnimationFinished] = useState(false);
-  const { isLoading } = usePerformance();
+  const { isLoading, performanceLevel } = usePerformance();
 
   const { contextSafe } = useGSAP();
 
@@ -20,9 +22,10 @@ const Hero = () => {
     gsap
       .timeline()
       .set(titleRef.current, {
-        scale: 1.5,
+        scale: 1.4,
       })
       .from(children, {
+        delay: 0.4,
         yPercent: 100,
         duration: 1.6,
         ease: 'power4.out',
@@ -39,6 +42,7 @@ const Hero = () => {
   });
 
   const revealAnimation = contextSafe(() => {
+    const joinUs = joinUsRef.current;
     const textTop = textTopRef.current?.querySelectorAll('.based-text') || [];
     const textBottom = textBottomRef.current?.querySelector('.description-text') || '';
     const copyright = textBottomRef.current?.querySelector('.copyright-text') || '';
@@ -73,7 +77,19 @@ const Hero = () => {
           ease: 'power4.out',
           stagger: 0.05,
         },
-        '<+=0.5',
+        '<+=0.8',
+      )
+      .from(
+        [joinUs, textTop],
+        {
+          ...(performanceLevel === PERFORMANCE_LEVEL.HIGH && {
+            filter: 'blur(10px)',
+          }),
+          duration: 1.2,
+          ease: 'power4.out',
+          stagger: 0.05,
+        },
+        '<+=0.2',
       );
   });
 
@@ -88,14 +104,14 @@ const Hero = () => {
   }, [isAnimationFinished, isLoading]);
 
   return (
-    <div className="h-dvh w-full bg-[url('/images/hero.png')] bg-cover bg-center px-4 py-[68px]">
+    <div className="h-dvh w-full bg-[url('/images/hero.png')] bg-cover bg-center px-4 py-[90px]">
       <div className="mx-auto flex h-full max-w-[1440px] flex-col justify-between">
         <div className="flex h-[inherit] flex-col items-start justify-center gap-16 md:h-auto md:flex-row md:items-end md:justify-between md:gap-0">
           <div className="flex w-full flex-col items-end gap-4 md:w-auto md:flex-row md:gap-0">
             <h1
               ref={titleRef}
               aria-label="DRIFT RUNNING CLUB/"
-              className="z-100 flex origin-top-left flex-col items-end gap-1 text-white"
+              className="z-100 flex origin-top-right flex-col items-end gap-1 text-white md:origin-top-left"
             >
               <div className="overflow-hidden">
                 <svg
@@ -143,7 +159,10 @@ const Hero = () => {
                 </svg>
               </div>
             </h1>
-            <p className="flex items-center justify-center gap-3 text-xs text-white">
+            <p
+              ref={joinUsRef}
+              className="flex items-center justify-center gap-3 text-xs text-white"
+            >
               <span>[</span>
               JOIN THE DRIFT
               <span>]</span>
