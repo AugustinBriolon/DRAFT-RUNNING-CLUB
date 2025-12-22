@@ -1,5 +1,4 @@
 import { useGSAP } from '@gsap/react';
-import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useRef } from 'react';
@@ -47,8 +46,7 @@ const AnimatedLink = ({ href, children, className = '', isJoinUs = false }: Anim
       topLetters,
       {
         yPercent: -100,
-        stagger: 0.01,
-        duration: 0.3,
+        stagger: 0.008,
         ease: 'power2.inOut',
       },
       '<',
@@ -58,8 +56,7 @@ const AnimatedLink = ({ href, children, className = '', isJoinUs = false }: Anim
       bottomLetters,
       {
         yPercent: 0,
-        stagger: 0.01,
-        duration: 0.3,
+        stagger: 0.008,
         ease: 'power2.inOut',
       },
       '<',
@@ -86,8 +83,7 @@ const AnimatedLink = ({ href, children, className = '', isJoinUs = false }: Anim
       topLetters,
       {
         yPercent: 0,
-        stagger: 0.01,
-        duration: 0.3,
+        stagger: 0.008,
         ease: 'power2.inOut',
       },
       '<',
@@ -97,8 +93,7 @@ const AnimatedLink = ({ href, children, className = '', isJoinUs = false }: Anim
       bottomLetters,
       {
         yPercent: 100,
-        stagger: 0.01,
-        duration: 0.3,
+        stagger: 0.008,
         ease: 'power2.inOut',
       },
       '<',

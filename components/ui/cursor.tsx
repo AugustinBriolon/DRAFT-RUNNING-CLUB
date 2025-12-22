@@ -104,7 +104,7 @@ const Cursor = () => {
       <div
         ref={pointerRefs.primary}
         className={clsx(
-          'pointer-events-none fixed top-0 left-0 z-9999 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center mix-blend-difference',
+          'pointer-events-none fixed top-0 left-0 z-9999 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center mix-blend-difference md:flex',
         )}
       >
         <div
@@ -118,7 +118,7 @@ const Cursor = () => {
       <div
         ref={pointerRefs.secondary}
         className={clsx(
-          'pointer-events-none fixed top-0 left-0 z-9999 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center mix-blend-difference',
+          'pointer-events-none fixed top-0 left-0 z-9999 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center mix-blend-difference md:flex',
         )}
       >
         <div
