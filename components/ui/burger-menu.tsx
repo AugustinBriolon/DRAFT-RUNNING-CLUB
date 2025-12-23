@@ -1,4 +1,5 @@
 import { useGSAP } from '@gsap/react';
+import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
@@ -95,7 +96,7 @@ export default function BurgerMenu() {
           menuRef.current,
           {
             width: '335px',
-            height: '425px',
+            height: '450px',
             duration: 0.75,
             ease: 'power2.inOut',
           },
@@ -142,29 +143,32 @@ export default function BurgerMenu() {
 
   return (
     <div className="relative md:hidden">
-      {/* Bouton Menu/Close */}
-      <div className="relative z-9 bg-white px-5 py-1.5" onClick={handleToggleMenu}>
+      <div
+        className={clsx(
+          'relative z-9 px-5 py-1.5 transition-all duration-300',
+          isActive ? 'bg-black' : 'bg-white',
+        )}
+        onClick={handleToggleMenu}
+      >
         <span
           ref={menuBouttonRef}
           className="font-bounded relative inline-flex w-12 justify-center overflow-hidden"
         >
           <span className="inline-flex overflow-hidden text-xs">{getText('MENU', true)}</span>
-          <span className="absolute inset-0 inline-flex cursor-pointer overflow-hidden text-xs">
+          <span className="absolute inset-0 inline-flex cursor-pointer overflow-hidden text-xs text-white">
             {getText('CLOSE', false)}
           </span>
         </span>
       </div>
 
-      {/* Fenêtre du menu */}
       <div
         ref={menuRef}
         className="will-change absolute top-0 right-0 z-8 origin-top-right overflow-hidden bg-white"
         style={{ perspective: '120px', perspectiveOrigin: 'bottom' }}
       >
-        {/* Navigation */}
         <div
           ref={navRef}
-          className="flex h-full flex-col items-end justify-start gap-5 bg-white px-4 pt-10 pb-2"
+          className="flex h-full flex-col items-end justify-start gap-5 bg-white px-4 pt-16 pb-2"
         >
           {links.map((link, i) => (
             <div

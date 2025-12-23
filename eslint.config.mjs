@@ -53,6 +53,7 @@ const eslintConfig = [
         HTMLVideoElement: 'readonly',
         HTMLAnchorElement: 'readonly',
         SVGSVGElement: 'readonly',
+        SVGPathElement: 'readonly',
         Node: 'readonly',
         NodeListOf: 'readonly',
         Element: 'readonly',

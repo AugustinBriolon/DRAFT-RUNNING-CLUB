@@ -69,13 +69,6 @@ const Hero = () => {
         },
         '<',
       )
-      .to(
-        titleRef.current,
-        {
-          zIndex: 5,
-        },
-        '<',
-      )
       .from(
         [splitDescription.lines, copyright],
         {
@@ -101,6 +94,13 @@ const Hero = () => {
           stagger: 0.05,
         },
         '<+=0.2',
+      )
+      .to(
+        titleRef.current,
+        {
+          zIndex: 5,
+        },
+        '<',
       );
   });
 

@@ -16,6 +16,7 @@
   /* COLORS */
   --color-black: #101010;
   --color-white: #F7F7F7;
+  --color-gray: #2B2B2B;
 }
 
 @theme {
@@ -26,6 +27,7 @@
   /* Primary */
   --color-black: #101010;
   --color-white: #F7F7F7;
+  --color-gray: #2B2B2B;
 
   /* FONTS */
   --font-impact: var(--font-impact);
