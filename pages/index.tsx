@@ -6,9 +6,9 @@ export default function Page() {
   return (
     <>
       <Hero />
-      <div className='bg-noise bg-black'>
-      <About />
-      <Runs />
+      <div className="bg-noise bg-black">
+        <About />
+        <Runs />
       </div>
     </>
   );

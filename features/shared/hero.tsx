@@ -65,6 +65,9 @@ const Hero = () => {
             if (screenLoaderRef.current) {
               gsap.set(screenLoaderRef.current, { display: 'none' });
             }
+            gsap.to(titleRef.current, {
+              zIndex: 5,
+            });
           },
         },
         '<',
@@ -73,11 +76,11 @@ const Hero = () => {
         [splitDescription.lines, copyright],
         {
           yPercent: 100,
-          duration: 1.6,
-          ease: 'power4.out',
+          duration: 1.2,
+          ease: 'power2.out',
           stagger: 0.05,
         },
-        '<+=0.8',
+        '<+=0.4',
       )
       .from(
         [joinUs, textTop],
@@ -94,13 +97,6 @@ const Hero = () => {
           stagger: 0.05,
         },
         '<+=0.2',
-      )
-      .to(
-        titleRef.current,
-        {
-          zIndex: 5,
-        },
-        '<',
       );
   });
 

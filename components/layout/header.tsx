@@ -19,39 +19,39 @@ const Header = () => {
           </Link>
           <div className="hidden md:flex">
             <div className="flex items-center justify-center backdrop-blur-xl">
-              <AnimatedLink className="cursor-pointer px-5 py-2 text-xs text-white" href="/about">
+              <AnimatedLink className="cursor-pointer px-5 py-2 text-xs text-white" href="#about">
                 ABOUT
               </AnimatedLink>
               <div className="h-3 w-px bg-white" />
-              <AnimatedLink className="cursor-pointer px-5 py-2 text-xs text-white" href="/runs">
+              <AnimatedLink className="cursor-pointer px-5 py-2 text-xs text-white" href="#runs">
                 RUNS
               </AnimatedLink>
               <div className="h-3 w-px bg-white" />
               <AnimatedLink
                 className="cursor-pointer px-5 py-2 text-xs text-white"
-                href="/community"
+                href="#community"
               >
                 COMMUNITY
               </AnimatedLink>
               <div className="h-3 w-px bg-white" />
               <AnimatedLink
                 className="cursor-pointer px-5 py-2 text-xs text-white"
-                href="/our-story"
+                href="#our-story"
               >
                 OUR STORY
               </AnimatedLink>
               <div className="h-3 w-px bg-white" />
-              <AnimatedLink className="cursor-pointer px-5 py-2 text-xs text-white" href="/gallery">
+              <AnimatedLink className="cursor-pointer px-5 py-2 text-xs text-white" href="#gallery">
                 GALLERY
               </AnimatedLink>
               <div className="h-3 w-px bg-white" />
-              <AnimatedLink className="cursor-pointer px-5 py-2 text-xs text-white" href="/faq">
+              <AnimatedLink className="cursor-pointer px-5 py-2 text-xs text-white" href="#faq">
                 FAQ
               </AnimatedLink>
             </div>
             <AnimatedLink
               className="flex cursor-pointer items-center gap-px bg-white px-5 py-2 text-xs text-nowrap text-black"
-              href="/join-us"
+              href="#join-us"
               isJoinUs
             >
               JOIN US

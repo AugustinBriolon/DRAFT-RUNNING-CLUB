@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 
 const links = [
-  { title: 'ABOUT', href: '/about' },
-  { title: 'RUNS', href: '/runs' },
-  { title: 'COMMUNITY', href: '/community' },
-  { title: 'OUR STORY', href: '/our-story' },
-  { title: 'GALLERY', href: '/gallery' },
-  { title: 'FAQ', href: '/faq' },
-  { title: 'JOIN US', href: '/join-us' },
+  { title: 'ABOUT', href: '#about' },
+  { title: 'RUNS', href: '#runs' },
+  { title: 'COMMUNITY', href: '#community' },
+  { title: 'OUR STORY', href: '#our-story' },
+  { title: 'GALLERY', href: '#gallery' },
+  { title: 'FAQ', href: '#faq' },
+  { title: 'JOIN US', href: '#join-us' },
 ];
 
 export default function BurgerMenu() {
@@ -168,7 +168,7 @@ export default function BurgerMenu() {
       >
         <div
           ref={navRef}
-          className="flex h-full flex-col items-end justify-start gap-5 bg-white px-4 pt-16 pb-2"
+          className="flex h-full flex-col items-start justify-start gap-5 bg-white px-4 pt-16 pb-2"
         >
           {links.map((link, i) => (
             <div
@@ -179,7 +179,7 @@ export default function BurgerMenu() {
               className="link-container"
               style={{ perspective: '120px', perspectiveOrigin: 'bottom' }}
             >
-              <Link className="text-3xl text-nowrap" href={link.href}>
+              <Link className="text-2xl text-nowrap" href={link.href}>
                 {link.title}
               </Link>
             </div>

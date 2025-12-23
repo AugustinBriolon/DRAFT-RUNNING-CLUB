@@ -5,13 +5,14 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import SplitText from 'gsap/dist/SplitText';
 import { useLenis } from 'lenis/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const About = () => {
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const runTraceRef = useRef<SVGSVGElement | null>(null);
   const runBottomContentRef = useRef<HTMLDivElement | null>(null);
   const aboutTextRef = useRef(null);
+  const [counter, setCounter] = useState(0);
 
   const { contextSafe } = useGSAP();
 
@@ -89,6 +90,17 @@ const About = () => {
         duration: 1.5,
         ease: 'power3.out',
       })
+      .to(
+        { value: 0 },
+        {
+          value: 100380,
+          onUpdate: function () {
+            setCounter(Math.round(this.targets()[0].value));
+          },
+          duration: 1.5,
+          ease: 'power3.out',
+        },
+      )
       .from(
         bottomText,
         {
@@ -108,7 +120,7 @@ const About = () => {
   }, []);
 
   return (
-    <div ref={aboutRef} className="mx-auto h-dvh w-full max-w-[1440px] px-4 py-16">
+    <div ref={aboutRef} className="mx-auto min-h-dvh w-full max-w-[1440px] px-4 py-16" id="about">
       <div className="flex h-auto flex-col items-start gap-8 lg:h-1/3 lg:flex-row">
         <div className="flex-1">
           <p className="text-white">ABOUT</p>
@@ -129,7 +141,14 @@ const About = () => {
         className="relative mt-16 flex h-auto w-full flex-col items-center justify-center gap-8 lg:mt-0 lg:h-2/3 lg:gap-0"
       >
         <div className="w-full overflow-hidden">
-          <FullWidthTitle className="text-gray font-impact full-text">100,380 KM</FullWidthTitle>
+          <FullWidthTitle
+            className="text-gray font-impact full-text"
+            finalValue={100380}
+            value={counter}
+            isNumberFlow
+          >
+            <span className="text-gray font-impact">KM</span>
+          </FullWidthTitle>
         </div>
         <div className="flex w-full flex-col justify-between gap-8 text-white lg:flex-row lg:items-center">
           <p className="bottom-text text-left text-balance">
