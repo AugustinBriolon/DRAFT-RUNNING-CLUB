@@ -2,9 +2,7 @@ import FullWidthTitle from '@/components/shared/full-width-title';
 import { IconPlus, IconRunTrace } from '@/components/ui/icons';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import SplitText from 'gsap/dist/SplitText';
-import { useLenis } from 'lenis/react';
 import { useRef, useState } from 'react';
 
 const About = () => {
@@ -19,22 +17,11 @@ const About = () => {
   const runTraceAnimation = contextSafe(() => {
     if (!aboutRef.current || !runTraceRef.current) return;
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const lenis = useLenis();
-      lenis?.on('scroll', () => {
-        ScrollTrigger.update();
-      });
-      gsap.ticker.add((time) => {
-        lenis?.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0);
-    });
-
     const path = runTraceRef.current?.querySelector('#path') as SVGPathElement | null;
     if (path) {
       const pathLength = path.getTotalLength();
       path.style.strokeDasharray = `${pathLength}`;
-      path.style.strokeDashoffset = `${pathLength}`;
+      path.style.strokeDashoffset = `-${pathLength}`;
 
       gsap.to(path, {
         strokeDashoffset: 0,
@@ -99,7 +86,7 @@ const About = () => {
           },
           duration: 1.5,
           ease: 'power3.out',
-        },
+        }, '<',
       )
       .from(
         bottomText,

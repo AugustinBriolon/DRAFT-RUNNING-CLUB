@@ -54,19 +54,18 @@ export default function BurgerMenu() {
         },
         '<',
       );
-      tl.to(linkRefs.current.filter(Boolean), {
-        opacity: 0,
+      tl.to(linkRefs.current, {
         rotateX: 90,
-        translateY: 80,
-        translateX: -20,
-        duration: 0.3,
+        y: 80,
+        x: -20,
+        duration: 0.5,
         stagger: 0.02,
-        ease: 'power2.inOut',
+        ease: 'power3.inOut',
       }).to(
         menuRef.current,
         {
           width: '88px',
-          height: '36px',
+          height: '32px',
           duration: 0.75,
           delay: 0.35,
           ease: 'power2.inOut',
@@ -96,22 +95,21 @@ export default function BurgerMenu() {
           menuRef.current,
           {
             width: '335px',
-            height: '450px',
+            height: '425px',
             duration: 0.75,
             ease: 'power2.inOut',
           },
           '<',
         )
         .to(
-          linkRefs.current.filter(Boolean),
+          linkRefs.current,
           {
-            opacity: 1,
             rotateX: 0,
-            translateY: 0,
-            translateX: 0,
+            y: 0,
+            x: 0,
             duration: 0.5,
             stagger: 0.02,
-            ease: 'power2.inOut',
+            ease: 'power3.inOut',
           },
           '-=0.3',
         );
@@ -126,7 +124,7 @@ export default function BurgerMenu() {
 
     gsap.set(menuRef.current, {
       width: '88px',
-      height: '36px',
+      height: '32px',
     });
 
     linkRefs.current.forEach((link) => {
@@ -134,8 +132,8 @@ export default function BurgerMenu() {
         gsap.set(link, {
           opacity: 0,
           rotateX: 90,
-          translateY: 80,
-          translateX: -20,
+          y: 80,
+          x: -20,
         });
       }
     });
@@ -145,7 +143,7 @@ export default function BurgerMenu() {
     <div className="relative md:hidden">
       <div
         className={clsx(
-          'relative z-9 px-5 py-1.5 transition-all duration-300',
+          'relative z-9 flex px-5 py-2 transition-all duration-300',
           isActive ? 'bg-black' : 'bg-white',
         )}
         onClick={handleToggleMenu}
@@ -168,20 +166,19 @@ export default function BurgerMenu() {
       >
         <div
           ref={navRef}
-          className="flex h-full flex-col items-start justify-start gap-5 bg-white px-4 pt-16 pb-2"
+          className="flex h-full flex-col items-start justify-start gap-5 overflow-hidden bg-white px-4 pt-12 pb-2"
         >
           {links.map((link, i) => (
-            <div
-              key={i}
-              ref={(el) => {
-                linkRefs.current[i] = el;
-              }}
-              className="link-container"
-              style={{ perspective: '120px', perspectiveOrigin: 'bottom' }}
-            >
-              <Link className="text-2xl text-nowrap" href={link.href}>
-                {link.title}
-              </Link>
+            <div key={i} className="overflow-hidden">
+              <div
+                ref={(el) => {
+                  linkRefs.current[i] = el;
+                }}
+              >
+                <Link className="text-2xl text-nowrap" href={link.href}>
+                  {link.title}
+                </Link>
+              </div>
             </div>
           ))}
         </div>

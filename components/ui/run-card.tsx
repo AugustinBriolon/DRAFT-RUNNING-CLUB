@@ -10,12 +10,13 @@ interface RunCardProps {
 
 export default function RunCard({ index, img, title, description }: RunCardProps) {
   return (
-    <div className="group relative flex h-[300px] w-full items-end justify-start md:h-[500px]">
+    <div className="group card-run relative flex h-[300px] w-full items-end justify-start md:h-[500px]">
       <div className="absolute inset-0 -z-1 overflow-hidden">
         <Image
           alt={title}
-          className="h-full w-full object-cover grayscale-100 transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+          className="card-img h-full w-full object-cover grayscale-100 group-hover:grayscale-0"
           height={1080}
+          loading="eager"
           src={img}
           width={1350}
         />
@@ -23,7 +24,7 @@ export default function RunCard({ index, img, title, description }: RunCardProps
       <div className="pointer-events-none absolute top-1 right-1 block md:hidden">
         <IconArrowUpRight className="text-white" />
       </div>
-      <div className="w-full px-3 py-4 text-4xl">
+      <div className="w-full p-4 text-4xl">
         <p className="font-impact! text-left text-white">
           <span className="mr-2">{index.toString().padStart(2, '0')}.</span>
           {title}

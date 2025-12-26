@@ -1,4 +1,5 @@
 import About from '@/features/shared/about';
+import Community from '@/features/shared/community';
 import Hero from '@/features/shared/hero';
 import Runs from '@/features/shared/runs';
 
@@ -10,6 +11,7 @@ export default function Page() {
         <About />
         <Runs />
       </div>
+      <Community />
     </>
   );
 }
