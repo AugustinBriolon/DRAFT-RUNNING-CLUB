@@ -32,8 +32,16 @@ const Cursor = () => {
       if (!pointerRefs.primary.current || !pointerRefs.secondary.current) return;
       pointerRefs.primary.current.style.opacity = '1';
       pointerRefs.secondary.current.style.opacity = '1';
-      gsap.to([pointerRefs.primary.current, pointerRefs.secondary.current], {
-        duration: (i: number) => 0.3 * (i + 1),
+      // Point central suit immédiatement
+      gsap.to(pointerRefs.primary.current, {
+        duration: 0.15,
+        x: e.clientX,
+        y: e.clientY,
+        ease: 'power2.out',
+      });
+      // Halo suit avec un léger délai pour un effet de traînée
+      gsap.to(pointerRefs.secondary.current, {
+        duration: 0.4,
         x: e.clientX,
         y: e.clientY,
         ease: 'power2.out',
@@ -101,31 +109,34 @@ const Cursor = () => {
 
   return (
     <>
+      {/* Point central - suit directement la souris */}
       <div
         ref={pointerRefs.primary}
         className={clsx(
-          'pointer-events-none fixed top-0 left-0 z-9999 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center mix-blend-difference md:flex',
+          'pointer-events-none fixed top-0 left-0 z-9999 hidden h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center md:flex',
         )}
       >
         <div
           className={clsx(
-            'h-2 w-2 rounded-full bg-white transition-all',
-            isActive && 'scale-75',
-            cursorState === CURSOR_STATE.POINTER && 'scale-150',
+            'h-1 w-1 rounded-full bg-black transition-all duration-300 ease-out',
+            isActive && 'scale-150 bg-white',
+            cursorState === CURSOR_STATE.POINTER && 'scale-200 bg-black',
           )}
         />
       </div>
+      {/* Halo externe - suit avec un léger délai */}
       <div
         ref={pointerRefs.secondary}
         className={clsx(
-          'pointer-events-none fixed top-0 left-0 z-9999 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center mix-blend-difference md:flex',
+          'pointer-events-none fixed top-0 left-0 z-9999 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center md:flex',
         )}
       >
         <div
           className={clsx(
-            'h-10 w-10 rounded-full border border-white transition-all',
-            cursorState === CURSOR_STATE.DEFAULT && 'scale-100',
-            cursorState === CURSOR_STATE.POINTER && 'scale-0',
+            'rounded-full border border-black transition-all duration-500 ease-out',
+            cursorState === CURSOR_STATE.DEFAULT && 'border-opacity-30 h-8 w-8',
+            cursorState === CURSOR_STATE.POINTER && 'h-16 w-16 border-2 opacity-100',
+            isActive && 'border-opacity-50 scale-75',
           )}
         />
       </div>

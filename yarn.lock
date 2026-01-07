@@ -1952,6 +1952,7 @@ __metadata:
     husky: "npm:^9.1.7"
     lenis: "npm:^1.3.16"
     lottie-react: "npm:^2.4.1"
+    motion: "npm:^12.24.8"
     next: "npm:16.0.10"
     prettier: "npm:^3.7.4"
     prettier-eslint: "npm:^16.4.2"
@@ -3165,6 +3166,28 @@ __metadata:
     hasown: "npm:^2.0.2"
     mime-types: "npm:^2.1.12"
   checksum: 10c0/dd6b767ee0bbd6d84039db12a0fa5a2028160ffbfaba1800695713b46ae974a5f6e08b3356c3195137f8530dcd9dfcb5d5ae1eeff53d0db1e5aad863b619ce3b
+  languageName: node
+  linkType: hard
+
+"framer-motion@npm:^12.24.8":
+  version: 12.24.8
+  resolution: "framer-motion@npm:12.24.8"
+  dependencies:
+    motion-dom: "npm:^12.24.8"
+    motion-utils: "npm:^12.23.28"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/a70f586da38a7a96a3a487b41ae5568df1b5e27e5cad7b192f89bb57f5f110efcaa3a9d6a09e2658ca8eaec17af11c95daac6f24240001b336e9044881c5e782
   languageName: node
   linkType: hard
 
@@ -4418,6 +4441,43 @@ __metadata:
   dependencies:
     minipass: "npm:^7.1.2"
   checksum: 10c0/5aad75ab0090b8266069c9aabe582c021ae53eb33c6c691054a13a45db3b4f91a7fb1bd79151e6b4e9e9a86727b522527c0a06ec7d45206b745d54cd3097bcec
+  languageName: node
+  linkType: hard
+
+"motion-dom@npm:^12.24.8":
+  version: 12.24.8
+  resolution: "motion-dom@npm:12.24.8"
+  dependencies:
+    motion-utils: "npm:^12.23.28"
+  checksum: 10c0/93b45f63f46caf48378786b5029d67bd6c06300c6258f3d5750218b3f1fb153e3c19cf1bb87d6ba5ee3665f15d37c06d80165ab07804042a516df981ca567da0
+  languageName: node
+  linkType: hard
+
+"motion-utils@npm:^12.23.28":
+  version: 12.23.28
+  resolution: "motion-utils@npm:12.23.28"
+  checksum: 10c0/3cfd3a25c83322c8d6454dd65ec17ad30a69518577166f0e6bdeefc6cafa3a7a73e29d4804b547b15a5c5c41cd1f5ca2d99c0e61d036a64a00ff33796bc286e1
+  languageName: node
+  linkType: hard
+
+"motion@npm:^12.24.8":
+  version: 12.24.8
+  resolution: "motion@npm:12.24.8"
+  dependencies:
+    framer-motion: "npm:^12.24.8"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/f01a087aa3f9fc60fcfb9efe530ae48b4e7b4d229986ae3d2d772570d7f0dea4868c88888dea2678f356d33bee891784f39107806edb711ce06ed0046cab6851
   languageName: node
   linkType: hard
 

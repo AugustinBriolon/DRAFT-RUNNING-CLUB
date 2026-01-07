@@ -1,6 +1,6 @@
 import { useIsScreenLoader } from '@/hooks/useIsScreenLoader';
 import { usePerformance } from '@/providers/performance.provider';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants } from 'motion/react';
 import { ReactNode } from 'react';
 
 export default function PageTransition({ children }: { children: ReactNode }) {

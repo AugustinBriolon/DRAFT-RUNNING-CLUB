@@ -17,40 +17,18 @@ const FullWidthTitle = forwardRef<HTMLDivElement, FullWidthTitleProps>(
     const measureRef = useRef<HTMLDivElement>(null);
     const baseFontSizeRef = useRef<number | null>(null);
 
-    const adjustTextSize = () => {
+    // Logique simple pour le mode normal (sans NumberFlow)
+    const adjustTextSizeNormal = () => {
       if (typeof window === 'undefined') return;
 
       const container = containerRef.current;
       const text = textRef.current;
-      const measure = measureRef.current;
 
       if (!container || !text) return;
 
       const containerWidth = container.offsetWidth;
       if (containerWidth === 0) return;
 
-      // Mode NumberFlow : on calcule d'abord la font-size optimale sur measureRef (valeur finale)
-      // puis on applique cette même font-size à textRef pour qu'elle reste fixe pendant l'animation
-      if (isNumberFlow && measure && typeof finalValue === 'number') {
-        // Étape 1 : Appliquer la logique FullWidthTitle normale à measureRef pour obtenir sa font-size optimale
-        if (baseFontSizeRef.current === null) {
-          measure.style.fontSize = '';
-          baseFontSizeRef.current = parseFloat(window.getComputedStyle(measure).fontSize) || 16;
-        }
-
-        measure.style.fontSize = `${baseFontSizeRef.current}px`;
-        const measureWidth = measure.scrollWidth;
-        if (measureWidth === 0) return;
-
-        // Étape 2 : Calculer la font-size optimale basée sur la largeur finale
-        const optimalFontSize = (containerWidth / measureWidth) * baseFontSizeRef.current;
-
-        // Étape 3 : Appliquer cette font-size fixe à textRef (qui contient le NumberFlow animé)
-        text.style.fontSize = `${optimalFontSize}px`;
-        return;
-      }
-
-      // Comportement normal sans NumberFlow
       if (baseFontSizeRef.current === null) {
         text.style.fontSize = '';
         baseFontSizeRef.current = parseFloat(window.getComputedStyle(text).fontSize) || 16;
@@ -63,6 +41,45 @@ const FullWidthTitle = forwardRef<HTMLDivElement, FullWidthTitleProps>(
 
       const fontSize = (containerWidth / textWidth) * baseFontSizeRef.current;
       text.style.fontSize = `${fontSize}px`;
+    };
+
+    // Logique complexe pour le mode NumberFlow
+    const adjustTextSizeNumberFlow = () => {
+      if (typeof window === 'undefined') return;
+
+      const container = containerRef.current;
+      const text = textRef.current;
+      const measure = measureRef.current;
+
+      if (!container || !text || !measure) return;
+
+      const containerWidth = container.offsetWidth;
+      if (containerWidth === 0) return;
+
+      // Étape 1 : Appliquer la logique FullWidthTitle normale à measureRef pour obtenir sa font-size optimale
+      if (baseFontSizeRef.current === null) {
+        measure.style.fontSize = '';
+        baseFontSizeRef.current = parseFloat(window.getComputedStyle(measure).fontSize) || 16;
+      }
+
+      measure.style.fontSize = `${baseFontSizeRef.current}px`;
+      const measureWidth = measure.scrollWidth;
+      if (measureWidth === 0) return;
+
+      // Étape 2 : Calculer la font-size optimale basée sur la largeur finale
+      const optimalFontSize = (containerWidth / measureWidth) * baseFontSizeRef.current;
+
+      // Étape 3 : Appliquer cette font-size fixe à textRef (qui contient le NumberFlow animé)
+      text.style.fontSize = `${optimalFontSize}px`;
+    };
+
+    // Fonction qui appelle la bonne logique selon le mode
+    const adjustTextSize = () => {
+      if (isNumberFlow) {
+        adjustTextSizeNumberFlow();
+      } else {
+        adjustTextSizeNormal();
+      }
     };
 
     useLayoutEffect(() => {
@@ -105,34 +122,43 @@ const FullWidthTitle = forwardRef<HTMLDivElement, FullWidthTitleProps>(
 
     const currentValue = typeof value === 'number' ? value : (finalValue ?? 0);
 
+    if (isNumberFlow) {
+      return (
+        <div
+          ref={containerRef}
+          className={clsx('flex w-full items-center justify-center overflow-hidden', className)}
+        >
+          <div
+            ref={measureRef}
+            aria-hidden="true"
+            className="font-impact pointer-events-none invisible absolute leading-none whitespace-nowrap"
+          >
+            <NumberFlow value={finalValue ?? 0} />
+            {children}
+          </div>
+
+          <div
+            ref={setTextRef}
+            className="font-impact flex w-full items-center justify-end leading-none whitespace-nowrap"
+          >
+            <NumberFlow value={currentValue} />
+            {children}
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div
         ref={containerRef}
         className={clsx('flex w-full items-center justify-center overflow-hidden', className)}
       >
-        {isNumberFlow && (
-          <div
-            ref={measureRef}
-            aria-hidden="true"
-            className="font-bebas-neue pointer-events-none invisible absolute leading-none whitespace-nowrap"
-          >
-            <NumberFlow value={finalValue ?? 0} />
-            {children}
-          </div>
-        )}
-
         <div
           ref={setTextRef}
-          className="font-bebas-neue flex w-full items-center justify-end leading-none whitespace-nowrap"
+          className="font-impact leading-none whitespace-nowrap"
+          id="title-text"
         >
-          {isNumberFlow ? (
-            <>
-              <NumberFlow value={currentValue} />
-              {children}
-            </>
-          ) : (
-            children
-          )}
+          {children}
         </div>
       </div>
     );

@@ -50,9 +50,7 @@ const AnimatedLink = ({ href, children, className = '', isJoinUs = false }: Anim
         ease: 'power2.inOut',
       },
       '<',
-    );
-
-    tl.to(
+    ).to(
       bottomLetters,
       {
         yPercent: 0,

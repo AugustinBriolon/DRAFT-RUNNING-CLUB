@@ -86,7 +86,8 @@ const About = () => {
           },
           duration: 1.5,
           ease: 'power3.out',
-        }, '<',
+        },
+        '<',
       )
       .from(
         bottomText,
@@ -107,7 +108,11 @@ const About = () => {
   }, []);
 
   return (
-    <div ref={aboutRef} className="mx-auto min-h-dvh w-full max-w-[1440px] px-4 py-16" id="about">
+    <div
+      ref={aboutRef}
+      className="mx-auto min-h-screen w-full max-w-[1440px] px-4 py-16 md:px-8"
+      id="about"
+    >
       <div className="flex h-auto flex-col items-start gap-8 lg:h-1/3 lg:flex-row">
         <div className="flex-1">
           <p className="text-white">ABOUT</p>

@@ -1,5 +1,5 @@
 import PageTransition from '@/components/layout/page-transition';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';

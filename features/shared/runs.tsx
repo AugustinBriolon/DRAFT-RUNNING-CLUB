@@ -104,25 +104,29 @@ const Runs = () => {
   }, []);
 
   return (
-    <div ref={runsRef} className="mx-auto min-h-dvh w-full max-w-[1440px] px-4 py-16" id="runs">
+    <div
+      ref={runsRef}
+      className="mx-auto min-h-screen w-full max-w-[1440px] px-4 py-16 md:px-8"
+      id="runs"
+    >
       <div ref={runsTitleRef} className="text-white">
         <div className="overflow-hidden">
           <p className="font-impact! title text-7xl">WE RUNTHE CITY - FROM</p>
         </div>
-        <div className="flex flex-col items-end gap-2 md:flex-row">
+        <div className="flex flex-col items-end gap-8 md:flex-row">
           <div className="overflow-hidden">
             <p className="title font-impact! text-7xl text-pretty lg:min-w-fit">
-              SUNRISE TO MIDNIGHT./
+              SUNRISE TO MIDNIGHT. /
             </p>
           </div>
-          <p className="font-bounded paragraph max-w-[170px] text-xs">
+          <p className="font-bounded paragraph max-w-[270px] text-xs">
             WEEKLY RUNS WEAVING BRIDGES, RIVERSIDES, CORNERS OF NEW YORK. AND THROUGH HIDDEN
           </p>
         </div>
       </div>
       <div
         ref={runsCardsRef}
-        className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+        className="mt-16 grid grid-cols-1 gap-4 md:mt-32 md:grid-cols-2 lg:grid-cols-4"
       >
         <div className="col-span-1 flex items-end justify-start">
           <p className="text-red text-md flex items-center justify-center gap-3 font-medium">

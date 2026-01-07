@@ -39,39 +39,49 @@ export default function BurgerMenu() {
 
     if (isActive) {
       // Fermeture du menu
-      tl.to(bottomLetters, {
-        yPercent: 100,
-        stagger: 0.008,
-        duration: 0.3,
-        ease: 'power2.inOut',
-      }).to(
-        topLetters,
+      tl.to(
+        bottomLetters,
         {
-          yPercent: 0,
+          yPercent: 100,
           stagger: 0.008,
           duration: 0.3,
           ease: 'power2.inOut',
         },
         '<',
-      );
-      tl.to(linkRefs.current, {
-        rotateX: 90,
-        y: 80,
-        x: -20,
-        duration: 0.5,
-        stagger: 0.02,
-        ease: 'power3.inOut',
-      }).to(
-        menuRef.current,
-        {
-          width: '88px',
-          height: '32px',
-          duration: 0.75,
-          delay: 0.35,
-          ease: 'power2.inOut',
-        },
-        '<',
-      );
+      )
+        .to(
+          topLetters,
+          {
+            yPercent: 0,
+            stagger: 0.008,
+            duration: 0.3,
+            ease: 'power2.inOut',
+          },
+          '<',
+        )
+        .to(
+          linkRefs.current,
+          {
+            rotateX: 90,
+            y: 80,
+            x: -20,
+            duration: 0.3,
+            stagger: 0.01,
+            ease: 'power3.inOut',
+          },
+          '<',
+        )
+        .to(
+          menuRef.current,
+          {
+            width: '88px',
+            height: '32px',
+            duration: 0.75,
+            delay: 0.25,
+            ease: 'power2.inOut',
+          },
+          '<',
+        );
       setIsActive(false);
     } else {
       // Ouverture du menu
@@ -107,6 +117,7 @@ export default function BurgerMenu() {
             rotateX: 0,
             y: 0,
             x: 0,
+            opacity: 1,
             duration: 0.5,
             stagger: 0.02,
             ease: 'power3.inOut',
@@ -152,8 +163,10 @@ export default function BurgerMenu() {
           ref={menuBouttonRef}
           className="font-bounded relative inline-flex w-12 justify-center overflow-hidden"
         >
-          <span className="inline-flex overflow-hidden text-xs">{getText('MENU', true)}</span>
-          <span className="absolute inset-0 inline-flex cursor-pointer overflow-hidden text-xs text-white">
+          <span className="inline-flex overflow-hidden text-xs text-white mix-blend-difference">
+            {getText('MENU', true)}
+          </span>
+          <span className="absolute inset-0 inline-flex cursor-pointer overflow-hidden text-xs text-white mix-blend-difference">
             {getText('CLOSE', false)}
           </span>
         </span>
