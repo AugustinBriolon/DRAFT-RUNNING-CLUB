@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import clsx from 'clsx';
 import { Fragment, useRef, useState } from 'react';
 import SplitText from 'gsap/dist/SplitText';
+import { useFontReady } from '@/hooks/useFontReady';
 
 const communityItems = [
   {
@@ -49,6 +50,7 @@ export default function Community() {
   };
   const { contextSafe } = useGSAP();
   const isMobile = useMatchMedia(BREAKPOINTS.MD);
+  const fontReady = useFontReady();
 
   const ARROW_PATH = 'M1 1H13M13 1V13M13 1L1 13';
   const CROSS_PATH = 'M13 1L1 13M1 1L13 13';
@@ -91,7 +93,7 @@ export default function Community() {
           trigger: refs.communityRef.current,
           toggleActions: 'play reverse play reverse',
           start: 'top 30%',
-          markers: true,
+          // markers: true,
         },
       })
       .from(
@@ -127,8 +129,9 @@ export default function Community() {
   });
 
   useGSAP(() => {
+    if (!fontReady) return;
     revealAnimation();
-  }, []);
+  }, [fontReady]);
 
   return (
     <div

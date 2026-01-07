@@ -7,10 +7,10 @@ export default function Page() {
   return (
     <>
       <Hero />
-      {/* <div className="bg-noise bg-black">
+      <div className="bg-noise bg-black">
         <About />
         <Runs />
-      </div> */}
+      </div>
       <Community />
     </>
   );

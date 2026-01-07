@@ -1,19 +1,14 @@
 import { ReactNode } from 'react';
 import { PerformanceProvider } from './performance.provider';
-import { QueryProvider } from './query.provider';
 import { SmoothScrollProvider } from './smooth-scroll.provider';
-import ScreenLoader from '@/components/layout/screen-loader';
-import { useIsScreenLoader } from '@/hooks/useIsScreenLoader';
+import { ScreenLoaderProvider } from './screen-loader.provider';
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const isScreenLoader = useIsScreenLoader();
-
   return (
-    <QueryProvider>
-      <PerformanceProvider>
-        {/* {isScreenLoader && <ScreenLoader />} */}
+    <PerformanceProvider>
+      <ScreenLoaderProvider>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
-      </PerformanceProvider>
-    </QueryProvider>
+      </ScreenLoaderProvider>
+    </PerformanceProvider>
   );
 };

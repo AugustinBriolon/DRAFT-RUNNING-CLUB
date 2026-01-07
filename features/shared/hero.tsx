@@ -4,6 +4,8 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { useRef, useState } from 'react';
+import { useScreenLoader } from '@/providers/screen-loader.provider';
+
 
 const Hero = () => {
   const screenLoaderRef = useRef<HTMLDivElement>(null);
@@ -13,6 +15,7 @@ const Hero = () => {
   const textBottomRef = useRef<HTMLDivElement>(null);
   const [isAnimationFinished, setIsAnimationFinished] = useState(false);
   const { isLoading, performanceLevel } = usePerformance();
+  const { setIsComplete } = useScreenLoader();
 
   const { contextSafe } = useGSAP();
 
@@ -38,6 +41,9 @@ const Hero = () => {
         scale: 1,
         duration: 1.6,
         ease: 'power4.inOut',
+        onComplete: () => {
+          setIsComplete(true);
+        },
       });
   });
 
