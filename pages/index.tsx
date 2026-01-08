@@ -1,17 +1,18 @@
-import About from '@/features/shared/about';
-import Community from '@/features/shared/community';
-import Hero from '@/features/shared/hero';
-import OurStory from '@/features/shared/our-story';
-import Runs from '@/features/shared/runs';
+import About from '@/features/about';
+import Community from '@/features/community';
+import Hero from '@/features/hero';
+import OurStory from '@/features/our-story';
+import Runs from '@/features/runs';
 
 export default function Page() {
   return (
     <>
-      <Hero />
-      <div className="bg-noise bg-black">
-        <About />
-        <Runs />
+      <div className="fixed inset-0 -z-1">
+        <div className="bg-noise bg-black"></div>
       </div>
+      <Hero />
+      <About />
+      <Runs />
       <Community />
       <OurStory />
     </>

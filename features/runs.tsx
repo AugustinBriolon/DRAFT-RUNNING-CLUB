@@ -119,7 +119,7 @@ const Runs = () => {
               SUNRISE TO MIDNIGHT. /
             </p>
           </div>
-          <p className="font-bounded paragraph max-w-[270px] text-xs">
+          <p className="font-bounded paragraph text-justify-last w-[280px] text-xs">
             WEEKLY RUNS WEAVING BRIDGES, RIVERSIDES, CORNERS OF NEW YORK. AND THROUGH HIDDEN
           </p>
         </div>

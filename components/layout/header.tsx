@@ -11,7 +11,7 @@ const Header = () => {
           <Link className="cursor-pointer" href="/">
             <Image
               alt="Logo"
-              className="h-8 w-auto"
+              className="h-8 w-auto select-none"
               height={396}
               src="/images/logo.png"
               width={820}

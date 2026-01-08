@@ -6,7 +6,6 @@ import { SplitText } from 'gsap/SplitText';
 import { useRef, useState } from 'react';
 import { useScreenLoader } from '@/providers/screen-loader.provider';
 
-
 const Hero = () => {
   const screenLoaderRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
@@ -117,9 +116,9 @@ const Hero = () => {
   }, [isAnimationFinished, isLoading]);
 
   return (
-    <div className="min-h-screen h-screen w-full bg-[url('/images/hero.png')] bg-cover bg-center px-4 py-[90px] md:px-8">
+    <div className="h-screen min-h-screen w-full bg-[url('/images/hero.png')] bg-cover bg-center px-4 py-[90px] md:px-8">
       <div className="mx-auto flex h-full max-w-[1440px] flex-col justify-between">
-        <div className="flex h-[inherit] flex-col items-start justify-center gap-16 md:h-auto md:flex-row md:items-end md:justify-between md:gap-0">
+        <div className="flex h-[inherit] flex-col items-start justify-center gap-16 md:h-auto lg:flex-row lg:items-end lg:justify-between lg:gap-0">
           <div className="flex w-full flex-col items-end gap-4 md:w-auto md:flex-row md:gap-0">
             <h1
               ref={titleRef}
@@ -181,7 +180,7 @@ const Hero = () => {
               <span>]</span>
             </p>
           </div>
-          <div ref={textTopRef} className="text-xs text-white">
+          <div ref={textTopRef} className="text-justify-last w-32 text-xs text-white md:w-38">
             <p className="based-text">BASED IN NEW</p>
             <div className="flex items-center justify-between">
               <p className="based-text">YORK CITY</p>

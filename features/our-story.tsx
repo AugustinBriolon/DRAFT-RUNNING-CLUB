@@ -1,15 +1,13 @@
 import { IconPlus } from '@/components/ui/icons';
 import React, { useRef } from 'react';
+import NextEvents from '../components/layout/next-events';
 
 export default function OurStory() {
   const refs = {
     ourStoryRef: useRef<HTMLDivElement>(null),
   };
   return (
-    <div
-      ref={refs.ourStoryRef}
-      className="bg-noise h-fit min-h-screen w-full bg-black px-4 py-16 md:px-8"
-    >
+    <div ref={refs.ourStoryRef} className="h-fit min-h-screen w-full px-4 py-16 md:px-8">
       <div className="mx-auto flex h-full max-w-[1440px] flex-col items-center justify-start gap-8 md:gap-16">
         <p className="font-light text-white">OUR STORY</p>
         <p className="font-impact! max-w-xl text-center text-4xl text-white">
@@ -57,6 +55,7 @@ export default function OurStory() {
             />
           </div>
         </div>
+        <NextEvents />
       </div>
     </div>
   );
