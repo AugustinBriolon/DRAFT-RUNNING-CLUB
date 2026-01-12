@@ -11,9 +11,9 @@ export default function Page() {
         <div className="bg-noise bg-black"></div>
       </div>
       <Hero />
-      <About />
+      {/* <About />
       <Runs />
-      <Community />
+      <Community /> */}
       <OurStory />
     </>
   );

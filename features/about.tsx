@@ -119,18 +119,21 @@ const About = () => {
         </div>
         <div className="flex flex-1 items-start gap-2">
           <IconPlus className="text-red h-6 w-6 shrink-0 rotate-45" />
-          <p ref={aboutTextRef} className="text-white">
+          <p ref={aboutTextRef} className="font-medium text-white">
             DRIFT WAS BORN IN 2021 ON THE RESTLESS STREETS OF NEW YORK CITY - UNDER THE LIGHTS OF
-            THE BROOKLYN BRIDGE, WITH THE EAST RIVER BREEZE CUTTING THROUGH THE NIGHT. IT STARTED
-            WITH A FEW FRIENDS WEAVING THROUGH WILLIAMSBURG, RUNNING WITHOUT WATCHES, JUST A
-            BLUETOOTH SPEAKER AND A SHARED NEED TO MOVE. WE WEREN'T TRYING TO WIN ANYTHING. WE WERE
-            CHASING SOMETHING ELSE - RHYTHM, RELEASE, REAL CONNECTION.
+            THE BROOKLYN BRIDGE, WITH THE EAST RIVER BREEZE CUTTING THROUGH THE NIGHT.
+            <span className="text-gray">
+              {' '}
+              IT STARTED WITH A FEW FRIENDS WEAVING THROUGH WILLIAMSBURG, RUNNING WITHOUT WATCHES,
+              JUST A BLUETOOTH SPEAKER AND A SHARED NEED TO MOVE. WE WEREN'T TRYING TO WIN ANYTHING.
+              WE WERE CHASING SOMETHING ELSE - RHYTHM, RELEASE, REAL CONNECTION.
+            </span>
           </p>
         </div>
       </div>
       <div
         ref={runBottomContentRef}
-        className="relative mt-16 flex h-auto w-full flex-col items-center justify-center gap-8 lg:mt-0 lg:h-2/3 lg:gap-0"
+        className="relative mt-16 flex h-auto w-full flex-col items-center justify-center gap-8 lg:h-2/3 lg:gap-0"
       >
         <div className="w-full overflow-hidden">
           <FullWidthTitle
