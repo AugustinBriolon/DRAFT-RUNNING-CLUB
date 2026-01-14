@@ -1,134 +1,70 @@
 import { isTouchDevice } from '@/hooks/useTouchDevice';
-import { useGSAP } from '@gsap/react';
-import clsx from 'clsx';
-import gsap from 'gsap';
-import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-enum CURSOR_STATE {
-  DEFAULT = 'DEFAULT',
-  POINTER = 'POINTER',
+interface TrailPoint {
+  x: number;
+  y: number;
+  id: number;
 }
 
+const MAX_TRAIL_LENGTH = 15;
+const TRAIL_INTERVAL = 20;
+
 const Cursor = () => {
-  const { contextSafe } = useGSAP();
-  const pathname = usePathname();
-  const pointerRefs = {
-    primary: useRef<HTMLDivElement>(null),
-    secondary: useRef<HTMLDivElement>(null),
-  };
   const observerRef = useRef<MutationObserver | null>(null);
+  const lastTrailTimeRef = useRef<number>(0);
 
-  const [cursorState, setCursorState] = useState(CURSOR_STATE.DEFAULT);
-  const [isActive, setIsActive] = useState(false);
+  const [trail, setTrail] = useState<TrailPoint[]>([]);
 
-  const cursorStateHandlers = {
-    changeToButton: useCallback(() => setCursorState(CURSOR_STATE.POINTER), []),
-    changeToDefault: useCallback(() => setCursorState(CURSOR_STATE.DEFAULT), []),
-  };
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const now = Date.now();
+    if (now - lastTrailTimeRef.current < TRAIL_INTERVAL) return;
+    lastTrailTimeRef.current = now;
 
-  const cursorHandlers = {
-    moveCursor: contextSafe((e: MouseEvent) => {
-      if (!pointerRefs.primary.current || !pointerRefs.secondary.current) return;
-      pointerRefs.primary.current.style.opacity = '1';
-      pointerRefs.secondary.current.style.opacity = '1';
-      gsap.to([pointerRefs.primary.current, pointerRefs.secondary.current], {
-        duration: (i: number) => 0.3 * (i + 1),
-        x: e.clientX,
-        y: e.clientY,
-        ease: 'power2.out',
-      });
-    }),
-    handleMouseDown: useCallback(() => {
-      setIsActive(true);
-    }, []),
-    handleMouseUp: useCallback(() => {
-      setIsActive(false);
-    }, []),
-  };
+    setTrail((prev) => {
+      const newTrail = [...prev, { x: e.clientX, y: e.clientY, id: now }];
+      if (newTrail.length > MAX_TRAIL_LENGTH) {
+        return newTrail.slice(-MAX_TRAIL_LENGTH);
+      }
 
-  const manageCursorEvents = useCallback(
-    (event: 'addEventListener' | 'removeEventListener') => {
-      const elements = {
-        button: document.querySelectorAll('.cursor-pointer'),
-      };
-
-      Object.entries({
-        button: cursorStateHandlers.changeToButton,
-      }).forEach(([key, handler]) => {
-        elements[key as keyof typeof elements].forEach((el) => {
-          el[event]('mouseover', handler);
-          el[event]('mouseleave', cursorStateHandlers.changeToDefault);
-        });
-      });
-    },
-    [cursorStateHandlers],
-  );
+      return newTrail;
+    });
+  }, []);
 
   useEffect(() => {
-    // Ne pas ajouter les event listeners sur les appareils tactiles
     if (isTouchDevice()) return;
 
-    observerRef.current = new MutationObserver(() => {
-      manageCursorEvents('removeEventListener');
-      manageCursorEvents('addEventListener');
-    });
-
-    const { moveCursor, handleMouseDown, handleMouseUp } = cursorHandlers;
-
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-    manageCursorEvents('addEventListener');
-    observerRef.current.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      manageCursorEvents('removeEventListener');
+      window.removeEventListener('mousemove', handleMouseMove);
       observerRef.current?.disconnect();
     };
-  }, [cursorHandlers, manageCursorEvents, isTouchDevice]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setCursorState(CURSOR_STATE.DEFAULT);
-    }, 500);
-  }, [pathname]);
+  }, [handleMouseMove]);
 
   if (isTouchDevice()) return null;
 
   return (
     <>
-      <div
-        ref={pointerRefs.primary}
-        className={clsx(
-          'pointer-events-none fixed top-0 left-0 z-9999 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center mix-blend-difference md:flex',
-        )}
-      >
-        <div
-          className={clsx(
-            'h-2 w-2 rounded-full bg-white transition-all',
-            isActive && 'scale-75',
-            cursorState === CURSOR_STATE.POINTER && 'scale-150',
-          )}
-        />
-      </div>
-      <div
-        ref={pointerRefs.secondary}
-        className={clsx(
-          'pointer-events-none fixed top-0 left-0 z-9999 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center mix-blend-difference md:flex',
-        )}
-      >
-        <div
-          className={clsx(
-            'h-10 w-10 rounded-full border border-white transition-all',
-            cursorState === CURSOR_STATE.DEFAULT && 'scale-100',
-            cursorState === CURSOR_STATE.POINTER && 'scale-0',
-          )}
-        />
-      </div>
+      {trail.map((point, i) => {
+        const isOldest = i === 0 && trail.length === MAX_TRAIL_LENGTH;
+        const opacity = (i + 1) / trail.length;
+        const scale = isOldest ? 0 : 1;
+
+        return (
+          <div
+            key={point.id}
+            className="bg-red pointer-events-none fixed z-9998 h-1 w-1 rounded-full"
+            style={{
+              left: `${point.x}px`,
+              top: `${point.y}px`,
+              transform: `translate(-50%, -50%) scale(${scale})`,
+              opacity: opacity,
+              transition: 'opacity 0.2s ease-out, transform 0.2s ease-out',
+            }}
+          />
+        );
+      })}
     </>
   );
 };

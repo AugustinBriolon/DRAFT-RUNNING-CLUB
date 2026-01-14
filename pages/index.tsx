@@ -1,6 +1,8 @@
 import About from '@/features/about';
 import Community from '@/features/community';
+import FAQ from '@/features/faq';
 import Hero from '@/features/hero';
+import JoinTheDrift from '@/features/join-the-drift';
 import OurStory from '@/features/our-story';
 import Runs from '@/features/runs';
 
@@ -11,10 +13,12 @@ export default function Page() {
         <div className="bg-noise bg-black"></div>
       </div>
       <Hero />
-      {/* <About />
+      <About />
       <Runs />
-      <Community /> */}
+      <Community />
       <OurStory />
+      <FAQ />
+      <JoinTheDrift />
     </>
   );
 }

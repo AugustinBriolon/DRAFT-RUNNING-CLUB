@@ -33,8 +33,8 @@ const preventScroll = (e: Event) => {
 };
 
 let scrollEventListeners: {
-  wheel: (e: WheelEvent) => void;
-  touchmove: (e: TouchEvent) => void;
+  wheel: (e: Event) => void;
+  touchmove: (e: Event) => void;
 } | null = null;
 
 const lockScrollEvents = (shouldLock: boolean) => {
@@ -43,8 +43,8 @@ const lockScrollEvents = (shouldLock: boolean) => {
   if (shouldLock) {
     if (!scrollEventListeners) {
       scrollEventListeners = {
-        wheel: preventScroll as (e: WheelEvent) => void,
-        touchmove: preventScroll as (e: TouchEvent) => void,
+        wheel: preventScroll,
+        touchmove: preventScroll,
       };
       document.addEventListener('wheel', scrollEventListeners.wheel, { passive: false });
       document.addEventListener('touchmove', scrollEventListeners.touchmove, { passive: false });

@@ -115,8 +115,10 @@ export default function OurStory() {
     const tlImage = gsap.timeline({
       scrollTrigger: {
         trigger: refs.ourStoryRef.current,
-        start: 'top -20%',
+        start: 'top 20%',
+        end: 'bottom 50%',
         // markers: true,
+        scrub: true,
       },
     });
 

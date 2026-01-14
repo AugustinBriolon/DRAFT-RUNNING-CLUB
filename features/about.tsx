@@ -78,7 +78,7 @@ const About = () => {
         ease: 'power3.out',
       })
       .to(
-        { value: 0 },
+        { value: 100000 },
         {
           value: 100380,
           onUpdate: function () {
