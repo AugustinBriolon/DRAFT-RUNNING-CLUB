@@ -28,16 +28,19 @@ export default function OurStory() {
     const splitSubtitle = SplitText.create(refs.subtitleRef.current, {
       type: 'lines, words',
       mask: 'lines',
+      aria: 'none',
     });
 
     const splitText = SplitText.create(refs.textRef.current, {
       type: 'lines',
       mask: 'lines',
+      aria: 'none',
     });
 
     const splitTextMobile = SplitText.create(refs.textMobileRef.current, {
       type: 'lines',
       mask: 'lines',
+      aria: 'none',
     });
 
     gsap
@@ -164,7 +167,7 @@ export default function OurStory() {
               ref={refs.img1Ref}
               alt="Our Story"
               className="h-1/3 w-1/3 object-cover md:w-1/2"
-              src="/images/our-story/story2.jpg"
+              src="/images/our-story/story2.webp"
             />
 
             <div className="flex w-full flex-1 items-start gap-2 md:hidden">
@@ -182,7 +185,7 @@ export default function OurStory() {
               ref={refs.img2Ref}
               alt="Our Story"
               className="aspect-square h-full w-full object-cover"
-              src="/images/our-story/story1.jpg"
+              src="/images/our-story/story1.webp"
             />
           </div>
         </div>

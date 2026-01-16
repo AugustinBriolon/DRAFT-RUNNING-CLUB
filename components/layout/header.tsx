@@ -13,7 +13,7 @@ const Header = () => {
               alt="Logo"
               className="h-8 w-auto select-none"
               height={396}
-              src="/images/logo.png"
+              src="/images/logo.webp"
               width={820}
             />
           </Link>

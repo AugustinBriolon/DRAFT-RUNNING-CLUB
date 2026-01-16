@@ -1,67 +1,44 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-
-interface SEOProps {
-  title?: string;
-  isFrench?: boolean;
-  description?: string;
-  image?: string;
-  url?: string;
-  type?: string;
-  noindex?: boolean;
-}
 
 const SEO = ({
-  title = 'BOILERPLATE - This is a boilerplate',
-  isFrench = false,
-  description = 'This is a boilerplate',
-  image = '/og-image.png',
-  url = 'https://boilerplate.com',
-  type = 'website',
-  noindex = false,
-}: SEOProps) => {
-  const { asPath } = useRouter();
-
+  title = 'Drift Running Club ✦ Concept by PARANTHESE STUDIO',
+  description = 'A non-commercial concept project by Paranthese Studio, bringing to life a design for the running club brand Drift Running Club — exploring advanced front-end interactions and motion design.',
+  image = '/images/ogimage.webp',
+  url = 'https://drift-running-club.paranthese.studio/',
+}) => {
   return (
     <Head>
-      <title>{title}</title>
-      <meta content="en" name="language" />
-      <meta content="en" httpEquiv="content-language" />
       <meta charSet="utf-8" />
       <meta content="width=device-width, initial-scale=1" name="viewport" />
+      <meta content="#000000" name="msapplication-TileColor" />
+      <meta content="#000000" name="theme-color" />
+      <title>{title}</title>
+      <meta content={title} name="apple-mobile-web-app-title" />
+      <meta content="yes" name="mobile-web-app-capable" />
+      <meta content="yes" name="apple-mobile-web-app-capable" />
+      <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
       <meta content={description} name="description" />
-      <meta content="telephone=no" name="format-detection" />
-      <meta content="default" name="referrer" />
+      <meta content="notranslate" name="google" />
 
-      {/* Indexation contrôlée */}
-      <meta content={noindex ? 'noindex, nofollow' : 'index, follow'} name="robots" />
-
-      {/* Canonical link */}
-      <link key="canonical" href={'https://sample.com' + asPath} rel="canonical" />
-
-      {/* OpenGraph Tags */}
+      {/* OGTAGS */}
+      <meta content="DRIFT RUNNING CLUB" property="og:site_name" />
       <meta content={title} property="og:title" />
+      <meta content="en_US" property="og:locale" />
       <meta content={description} property="og:description" />
-      <meta content={`${url}${image}`} property="og:image" />
+      <meta content={image} property="og:image" />
       <meta content={url} property="og:url" />
-      <meta content={type} property="og:type" />
-      <meta content="Sample" property="og:site_name" />
-      <meta content={isFrench ? 'fr_FR' : 'en_US'} property="og:locale" />
+      <meta content="website" property="og:type" />
 
-      {/* Twitter Card */}
-      <meta content="summary_large_image" name="twitter:card" />
-      <meta content={title} name="twitter:title" />
-      <meta content={description} name="twitter:description" />
-      <meta content={`${url}${image}`} name="twitter:image" />
+      {/* FAVICON */}
+      <link href="/favicon/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
+      <link href="/favicon/favicon.svg" rel="icon" type="image/svg+xml" />
+      <link href="/favicon/favicon.ico" rel="shortcut icon" />
+      <link href="/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+      <link href="/favicon/site.webmanifest" rel="manifest" />
 
-      {/* Google verification - Uncomment when ready */}
-      <meta content="key-sample-google-verification" name="google-site-verification" />
-
-      {/* Keywords - Optimisé pour "sample" et "sample studio" */}
-      <meta content="sample, Sample, SAMPLE," name="keywords" />
-
-      {/* Favicon */}
-      <link href="/favicon.svg" rel="icon" />
+      {/* SEO */}
+      <link href={url} rel="canonical" />
+      <meta content="index, follow" name="robots" />
     </Head>
   );
 };

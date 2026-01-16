@@ -7,11 +7,13 @@ import { useRef, useState } from 'react';
 import { useScreenLoader } from '@/providers/screen-loader.provider';
 
 const Hero = () => {
-  const screenLoaderRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const joinUsRef = useRef<HTMLDivElement>(null);
-  const textTopRef = useRef<HTMLDivElement>(null);
-  const textBottomRef = useRef<HTMLDivElement>(null);
+  const refs = {
+    screenLoaderRef: useRef<HTMLDivElement>(null),
+    titleRef: useRef<HTMLDivElement>(null),
+    joinUsRef: useRef<HTMLDivElement>(null),
+    textTopRef: useRef<HTMLDivElement>(null),
+    textBottomRef: useRef<HTMLDivElement>(null),
+  };
   const [isAnimationFinished, setIsAnimationFinished] = useState(false);
   const { isLoading, performanceLevel } = usePerformance();
   const { setIsComplete } = useScreenLoader();
@@ -19,11 +21,11 @@ const Hero = () => {
   const { contextSafe } = useGSAP();
 
   const loaderAnimation = contextSafe(() => {
-    const children = titleRef.current?.querySelectorAll('svg') || [];
+    const children = refs.titleRef.current?.querySelectorAll('svg') || [];
 
     gsap
       .timeline()
-      .set(titleRef.current, {
+      .set(refs.titleRef.current, {
         scale: 1.4,
       })
       .from(children, {
@@ -36,7 +38,7 @@ const Hero = () => {
           setIsAnimationFinished(true);
         },
       })
-      .to(titleRef.current, {
+      .to(refs.titleRef.current, {
         scale: 1,
         duration: 1.6,
         ease: 'power4.inOut',
@@ -47,30 +49,31 @@ const Hero = () => {
   });
 
   const revealAnimation = contextSafe(() => {
-    const joinUs = joinUsRef.current;
-    const textTop = textTopRef.current?.querySelectorAll('.based-text') || [];
-    const textBottom = textBottomRef.current?.querySelector('.description-text') || '';
-    const copyright = textBottomRef.current?.querySelector('.copyright-text') || '';
+    const joinUs = refs.joinUsRef.current;
+    const textTop = refs.textTopRef.current?.querySelectorAll('.based-text') || [];
+    const textBottom = refs.textBottomRef.current?.querySelector('.description-text') || '';
+    const copyright = refs.textBottomRef.current?.querySelector('.copyright-text') || '';
 
     const splitDescription = SplitText.create(textBottom, {
       type: 'lines, words',
       mask: 'lines',
+      aria: 'none',
     });
 
     gsap
       .timeline()
       .to(
-        screenLoaderRef.current,
+        refs.screenLoaderRef.current,
         {
           delay: 0.4,
           yPercent: -100,
           duration: 1.5,
           ease: 'power4.inOut',
           onComplete: () => {
-            if (screenLoaderRef.current) {
-              gsap.set(screenLoaderRef.current, { display: 'none' });
+            if (refs.screenLoaderRef.current) {
+              gsap.set(refs.screenLoaderRef.current, { display: 'none' });
             }
-            gsap.to(titleRef.current, {
+            gsap.to(refs.titleRef.current, {
               zIndex: 5,
             });
           },
@@ -116,12 +119,12 @@ const Hero = () => {
   }, [isAnimationFinished, isLoading]);
 
   return (
-    <div className="h-screen min-h-screen w-full bg-[url('/images/hero.png')] bg-cover bg-center px-4 py-[90px] md:px-8">
+    <div className="h-screen min-h-screen w-full bg-[url('/images/hero.webp')] bg-cover bg-center px-4 py-[90px] md:px-8">
       <div className="mx-auto flex h-full max-w-[1440px] flex-col justify-between">
         <div className="flex h-[inherit] flex-col items-start justify-center gap-16 md:h-auto lg:flex-row lg:items-end lg:justify-between lg:gap-0">
           <div className="flex w-full flex-col items-end gap-4 md:w-auto md:flex-row md:gap-0">
             <h1
-              ref={titleRef}
+              ref={refs.titleRef}
               aria-label="DRIFT RUNNING CLUB/"
               className="z-11 flex origin-top-right flex-col items-end gap-1 text-white md:origin-top-left"
             >
@@ -172,7 +175,7 @@ const Hero = () => {
               </div>
             </h1>
             <p
-              ref={joinUsRef}
+              ref={refs.joinUsRef}
               className="group flex cursor-pointer items-center justify-center gap-3 text-xs text-white"
             >
               <span className="transition-transform duration-300 group-hover:translate-x-1">[</span>
@@ -182,7 +185,7 @@ const Hero = () => {
               </span>
             </p>
           </div>
-          <div ref={textTopRef} className="text-justify-last w-32 text-xs text-white md:w-38">
+          <div ref={refs.textTopRef} className="text-justify-last w-32 text-xs text-white md:w-38">
             <p className="based-text">BASED IN NEW</p>
             <div className="flex items-center justify-between">
               <p className="based-text">YORK CITY</p>
@@ -190,7 +193,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div ref={textBottomRef} className="flex items-center justify-between">
+        <div ref={refs.textBottomRef} className="flex items-center justify-between">
           <p className="description-text max-w-xs text-xs text-white">
             RUN WITH THE NIGHT, DRIFT WITH THE RYTHM, AND LET THE CITY CARRY YOUR FOWAED.
           </p>
@@ -200,7 +203,7 @@ const Hero = () => {
         </div>
       </div>
       <div
-        ref={screenLoaderRef}
+        ref={refs.screenLoaderRef}
         className="fixed inset-0 z-10 flex items-center justify-center bg-black"
       ></div>
     </div>

@@ -7,25 +7,25 @@ import { useRef } from 'react';
 const eventCard = [
   {
     index: 1,
-    img: '/images/next-events/event1.jpg',
+    img: '/images/next-events/event1.webp',
     title: "MAY'26",
     description: 'BROOKLYN 10K',
   },
   {
     index: 2,
-    img: '/images/next-events/event2.jpg',
+    img: '/images/next-events/event2.webp',
     title: "AUG'26",
     description: 'MANHATTAN 12K',
   },
   {
     index: 3,
-    img: '/images/next-events/event3.jpg',
+    img: '/images/next-events/event3.webp',
     title: "OCT'26",
     description: 'QUEENS 15K',
   },
   {
     index: 4,
-    img: '/images/next-events/event4.jpg',
+    img: '/images/next-events/event4.webp',
     title: "DEC'26",
     description: 'EAST RIVER 8K',
   },
@@ -53,6 +53,7 @@ export default function NextEvents() {
     const splitTitle = SplitText.create(refs.titleRef.current, {
       type: 'words, chars',
       mask: 'words',
+      aria: 'none',
     });
 
     gsap

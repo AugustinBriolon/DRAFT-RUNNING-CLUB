@@ -81,10 +81,12 @@ export default function Community() {
     const splitTitle = SplitText.create(refs.titleRef.current, {
       type: 'words, chars',
       mask: 'chars',
+      aria: 'none',
     });
     const splitSubtitle = SplitText.create(refs.subtitleRef.current, {
       type: 'lines',
       mask: 'lines',
+      aria: 'none',
     });
 
     gsap

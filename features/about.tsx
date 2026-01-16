@@ -42,6 +42,7 @@ const About = () => {
       const splitAboutText = SplitText.create(aboutTextRef.current, {
         type: 'lines, words',
         mask: 'lines',
+        aria: 'none',
       });
 
       gsap

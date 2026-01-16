@@ -23,6 +23,7 @@ export default function JoinTheDrift() {
     const splitText = SplitText.create(refs.textRef.current, {
       type: 'words,lines',
       mask: 'lines',
+      aria: 'none',
     });
 
     gsap
@@ -100,7 +101,7 @@ export default function JoinTheDrift() {
             alt="Join the Drift"
             className="row-start-2 h-full object-cover lg:h-2/3"
             height={1600}
-            src="/images/join-the-drift/little.jpg"
+            src="/images/join-the-drift/little.webp"
             width={2000}
           />
           <Image
@@ -108,7 +109,7 @@ export default function JoinTheDrift() {
             alt="Join the Drift"
             className="col-span-2 max-h-140 w-full object-cover lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-h-max"
             height={2062}
-            src="/images/join-the-drift/main.jpg"
+            src="/images/join-the-drift/main.webp"
             width={1536}
           />
           <div className="flex flex-col justify-between lg:col-start-3 lg:row-start-2">

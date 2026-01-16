@@ -41,6 +41,7 @@ const Runs = () => {
       const splitParagraph = SplitText.create(paragraph, {
         type: 'lines, words',
         mask: 'lines',
+        aria: 'none',
       });
       gsap
         .timeline({
