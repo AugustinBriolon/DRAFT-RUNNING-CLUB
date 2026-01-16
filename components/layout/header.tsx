@@ -62,7 +62,7 @@ const Header = () => {
               </ScrambleLink>
             </div>
             <ScrambleLink
-              className="w-30 bg-white px-5 py-2 text-xs text-black"
+              className="w-31 bg-white px-5 py-2 text-xs text-black"
               href="#join-us"
               isJoinUs
             >

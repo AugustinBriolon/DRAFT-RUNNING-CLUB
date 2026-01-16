@@ -5,13 +5,14 @@ import { forwardRef, useLayoutEffect, useRef } from 'react';
 interface FullWidthTitleProps {
   children?: React.ReactNode;
   className?: string;
+  classChildren?: string;
   isNumberFlow?: boolean;
   value?: number;
   finalValue?: number;
 }
 
 const FullWidthTitle = forwardRef<HTMLDivElement, FullWidthTitleProps>(
-  ({ children, className, isNumberFlow = false, value, finalValue }, ref) => {
+  ({ children, className, classChildren, isNumberFlow = false, value, finalValue }, ref) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const measureRef = useRef<HTMLDivElement>(null);
@@ -139,7 +140,10 @@ const FullWidthTitle = forwardRef<HTMLDivElement, FullWidthTitleProps>(
 
           <div
             ref={setTextRef}
-            className="font-impact flex w-full items-center justify-end leading-none whitespace-nowrap"
+            className={clsx(
+              'font-impact flex w-full items-center justify-end leading-none whitespace-nowrap',
+              classChildren,
+            )}
           >
             <NumberFlow value={currentValue} />
             {children}
@@ -155,7 +159,7 @@ const FullWidthTitle = forwardRef<HTMLDivElement, FullWidthTitleProps>(
       >
         <div
           ref={setTextRef}
-          className="font-impact leading-none whitespace-nowrap"
+          className={clsx('font-impact leading-none whitespace-nowrap', classChildren)}
           id="title-text"
         >
           {children}

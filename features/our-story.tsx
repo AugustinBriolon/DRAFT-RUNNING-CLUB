@@ -116,9 +116,9 @@ export default function OurStory() {
       scrollTrigger: {
         trigger: refs.ourStoryRef.current,
         start: 'top 20%',
-        end: 'bottom 50%',
-        // markers: true,
+        end: 'bottom bottom',
         scrub: true,
+        // markers: true,
       },
     });
 

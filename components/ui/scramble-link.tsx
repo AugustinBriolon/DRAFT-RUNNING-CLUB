@@ -12,15 +12,43 @@ interface ScrambleLinkProps {
 
 const ScrambleLink = ({ href, children, className = '', isJoinUs = false }: ScrambleLinkProps) => {
   const linkRef = useRef<HTMLSpanElement>(null);
-  const pathRef = useRef(null);
+  const pathRef = useRef<SVGPathElement>(null);
   const { contextSafe } = useGSAP();
 
   const ARROW_PATH = 'm9 18 6-6-6-6';
   const PLUS_PATH = 'M5 12h14M12 5v14';
 
-  const handleMouseEnter = contextSafe(() => {
+  const words = children.trim().split(/\s+/);
+
+  const scrambleWords = contextSafe(() => {
     if (!linkRef.current) return;
 
+    const wordEls = linkRef.current.querySelectorAll<HTMLElement>('.scramble-word');
+    const tl = gsap.timeline();
+
+    wordEls.forEach((el, index) => {
+      const { text } = el.dataset;
+      if (text) {
+        tl.to(
+          el,
+          {
+            duration: 1,
+            scrambleText: {
+              text,
+              tweenLength: false,
+              chars: 'XO',
+              speed: 0.5,
+            },
+          },
+          index * 0.05,
+        );
+      }
+    });
+
+    return tl;
+  });
+
+  const handleMouseEnter = contextSafe(() => {
     const tl = gsap.timeline();
 
     if (pathRef.current && isJoinUs) {
@@ -30,24 +58,17 @@ const ScrambleLink = ({ href, children, className = '', isJoinUs = false }: Scra
         ease: 'power2.inOut',
       });
     }
-    tl.to(
-      linkRef.current,
-      {
-        duration: 1,
-        scrambleText: {
-          text: children,
-          tweenLength: false,
-          // chars: '!@#$%^&*()-_=+<>?/[]{}',
-          chars: 'XO',
-          speed: 0.5,
-        },
-      },
-      '<',
-    );
+
+    const scrambleTween = scrambleWords();
+    if (scrambleTween) {
+      tl.add(scrambleTween, '<');
+    }
   });
 
   const handleMouseLeave = contextSafe(() => {
     if (!linkRef.current) return;
+
+    const wordEls = linkRef.current.querySelectorAll<HTMLSpanElement>('.scramble-word');
 
     const tl = gsap.timeline();
 
@@ -59,20 +80,9 @@ const ScrambleLink = ({ href, children, className = '', isJoinUs = false }: Scra
       });
     }
 
-    tl.to(
-      linkRef.current,
-      {
-        duration: 1,
-        scrambleText: {
-          text: children,
-          tweenLength: false,
-          // chars: '!@#$%^&*()-_=+<>?/[]{}',
-          chars: 'XO',
-          speed: 0.5,
-        },
-      },
-      '<',
-    );
+    tl.set(wordEls, {
+      textContent: (_: number, el: HTMLElement) => el.dataset.text!,
+    });
   });
 
   return (
@@ -83,8 +93,17 @@ const ScrambleLink = ({ href, children, className = '', isJoinUs = false }: Scra
       onMouseLeave={handleMouseLeave}
     >
       <span ref={linkRef} className={`${isJoinUs ? 'w-18 overflow-hidden' : ''} inline-flex`}>
-        {children}
+        {words.map((word, i) => (
+          <span key={i} className="inline-flex">
+            <span className="scramble-word" data-text={word}>
+              {word}
+            </span>
+
+            {i < words.length - 1 && <span className="mx-[0.25em]" />}
+          </span>
+        ))}
       </span>
+
       {isJoinUs && (
         <svg
           className="h-5 min-w-5"
@@ -98,7 +117,7 @@ const ScrambleLink = ({ href, children, className = '', isJoinUs = false }: Scra
           width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path ref={pathRef} d={ARROW_PATH} id="arrow" />
+          <path ref={pathRef} d={ARROW_PATH} />
         </svg>
       )}
     </Link>

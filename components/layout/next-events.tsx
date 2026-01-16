@@ -60,14 +60,24 @@ export default function NextEvents() {
         scrollTrigger: {
           trigger: refs.nextEventsRef.current,
           start: 'top 65%',
+          scrub: true,
         },
       })
       .from(imagesTableRefs, {
-        clipPath: 'inset(100% 0 0 0)',
-        stagger: 0.03,
+        clipPath: 'inset(0 0 100% 0)',
         duration: 1.5,
         ease: 'power2.out',
       })
+      .from(
+        splitTitle.words,
+        {
+          yPercent: 100,
+          stagger: 0.02,
+          duration: 1.2,
+          ease: 'power2.out',
+        },
+        '<',
+      )
       .from(
         [textTableRefs, descriptionTableRefs],
         {
@@ -75,16 +85,6 @@ export default function NextEvents() {
           y: 10,
           stagger: 0.05,
           duration: 0.6,
-          ease: 'power2.out',
-        },
-        '<0.2',
-      )
-      .from(
-        splitTitle.words,
-        {
-          yPercent: 100,
-          stagger: 0.02,
-          duration: 1.2,
           ease: 'power2.out',
         },
         '<',

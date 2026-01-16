@@ -173,11 +173,13 @@ const Hero = () => {
             </h1>
             <p
               ref={joinUsRef}
-              className="flex items-center justify-center gap-3 text-xs text-white"
+              className="group flex cursor-pointer items-center justify-center gap-3 text-xs text-white"
             >
-              <span>[</span>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">[</span>
               JOIN THE DRIFT
-              <span>]</span>
+              <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                ]
+              </span>
             </p>
           </div>
           <div ref={textTopRef} className="text-justify-last w-32 text-xs text-white md:w-38">
