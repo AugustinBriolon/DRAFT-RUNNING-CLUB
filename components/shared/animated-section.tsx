@@ -218,6 +218,7 @@ const AnimatedSection = ({
             height={100}
             src={images[img.imageIndex]}
             width={100}
+            preload
           />
         </div>
       ))}

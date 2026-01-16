@@ -67,7 +67,11 @@ export default function JoinTheDrift() {
   }, []);
 
   return (
-    <div ref={refs.sectionRef} className="min-h-fit w-full bg-black px-4 py-16 lg:px-8" id="about">
+    <div
+      ref={refs.sectionRef}
+      className="min-h-fit w-full bg-black px-4 py-16 lg:px-8"
+      id="join-us"
+    >
       <div className="relative mx-auto flex max-w-[1440px] flex-col items-end justify-between lg:h-full lg:items-start">
         <div className="absolute top-0 left-0 z-5 grid w-full grid-cols-2 lg:grid-cols-[1fr_1fr_auto] lg:gap-8 lg:pl-32">
           <FullWidthTitle ref={refs.title1Ref} className="col-span-1 text-white">
@@ -103,6 +107,7 @@ export default function JoinTheDrift() {
             height={1600}
             src="/images/join-the-drift/little.webp"
             width={2000}
+            preload
           />
           <Image
             ref={refs.secondaryImage}
@@ -111,6 +116,7 @@ export default function JoinTheDrift() {
             height={2062}
             src="/images/join-the-drift/main.webp"
             width={1536}
+            preload
           />
           <div className="flex flex-col justify-between lg:col-start-3 lg:row-start-2">
             <p ref={refs.textRef} className="w-full text-xs text-white lg:w-2/3">

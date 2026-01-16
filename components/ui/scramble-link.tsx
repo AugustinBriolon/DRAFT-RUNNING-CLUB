@@ -1,5 +1,7 @@
+import { scrollTo } from '@/utils/scroll-to.utils';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useLenis } from 'lenis/react';
 import Link from 'next/link';
 import { useRef } from 'react';
 
@@ -14,6 +16,7 @@ const ScrambleLink = ({ href, children, className = '', isJoinUs = false }: Scra
   const linkRef = useRef<HTMLSpanElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const { contextSafe } = useGSAP();
+  const lenis = useLenis();
 
   const ARROW_PATH = 'm9 18 6-6-6-6';
   const PLUS_PATH = 'M5 12h14M12 5v14';
@@ -91,6 +94,9 @@ const ScrambleLink = ({ href, children, className = '', isJoinUs = false }: Scra
       href={href}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={
+        href ? (e) => scrollTo(e, lenis, href, href === '#gallery' ? -100 : undefined) : undefined
+      }
     >
       <span ref={linkRef} className={`${isJoinUs ? 'w-18 overflow-hidden' : ''} inline-flex`}>
         {words.map((word, i) => (

@@ -100,6 +100,7 @@ export default function NextEvents() {
     <div
       ref={refs.nextEventsRef}
       className="mt-32 grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5"
+      id="gallery"
     >
       {eventCard.map((event) => (
         <div
@@ -117,6 +118,7 @@ export default function NextEvents() {
             height={1200}
             src={event.img}
             width={708}
+            preload
           />
           <div className="text-gray text-sm">
             <p className="event-title">{event.title}</p>

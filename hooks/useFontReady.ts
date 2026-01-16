@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useFontReady() {
+export function useFontReadyHook() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {

@@ -129,7 +129,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <div ref={refs.faqRef} className="h-fit w-full px-4 py-16 md:px-8">
+    <div ref={refs.faqRef} className="h-fit w-full px-4 py-16 md:px-8" id="faq">
       <div className="mx-auto flex h-full max-w-[1440px] flex-col justify-start">
         <p className="font-impact! w-3/4 text-7xl text-white md:w-auto">FAQ /</p>
         <div ref={refs.itemRefs} className="mt-16 flex min-h-0 shrink flex-col">

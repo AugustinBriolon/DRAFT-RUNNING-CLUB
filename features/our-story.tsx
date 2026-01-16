@@ -137,7 +137,11 @@ export default function OurStory() {
   }, []);
 
   return (
-    <div ref={refs.ourStoryRef} className="h-fit min-h-screen w-full px-4 py-16 md:px-8">
+    <div
+      ref={refs.ourStoryRef}
+      className="h-fit min-h-screen w-full px-4 py-16 md:px-8"
+      id="our-story"
+    >
       <div className="mx-auto flex h-full max-w-[1440px] flex-col items-center justify-start gap-8 md:gap-16">
         <p ref={refs.titleRef} className="font-light text-white">
           OUR STORY

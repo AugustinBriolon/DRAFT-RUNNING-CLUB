@@ -1,20 +1,25 @@
+import { scrollTo } from '@/utils/scroll-to.utils';
+import { useLenis } from 'lenis/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import BurgerMenu from '../ui/burger-menu';
 import ScrambleLink from '../ui/scramble-link';
 
 const Header = () => {
+  const lenis = useLenis();
+
   return (
     <header className="fixed top-0 left-0 z-10 w-full">
       <div className="relative mx-auto max-w-[1440px] p-4">
         <div className="flex items-center justify-between">
-          <Link className="cursor-pointer" href="/">
+          <Link className="cursor-pointer" href="/" onClick={(e) => scrollTo(e, lenis, '#hero')}>
             <Image
               alt="Logo"
               className="h-8 w-auto select-none"
               height={396}
               src="/images/logo.webp"
               width={820}
+              preload
             />
           </Link>
           <div className="hidden md:flex">

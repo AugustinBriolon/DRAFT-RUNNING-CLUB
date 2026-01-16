@@ -1,8 +1,10 @@
+import { scrollTo } from '@/utils/scroll-to.utils';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { useLenis } from 'lenis/react';
 
 const links = [
   { title: 'ABOUT', href: '#about' },
@@ -21,6 +23,7 @@ export default function BurgerMenu() {
   const linkRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [isActive, setIsActive] = useState(false);
   const { contextSafe } = useGSAP();
+  const lenis = useLenis();
 
   const getText = (text: string, isTop = false) => {
     return text.split('').map((char, index) => (
@@ -188,7 +191,14 @@ export default function BurgerMenu() {
                   linkRefs.current[i] = el;
                 }}
               >
-                <Link className="text-2xl text-nowrap" href={link.href}>
+                <Link
+                  className="text-2xl text-nowrap"
+                  href={link.href}
+                  onClick={(e) => {
+                    scrollTo(e, lenis, link.href, link.href === '#gallery' ? -100 : undefined);
+                    handleToggleMenu();
+                  }}
+                >
                   {link.title}
                 </Link>
               </div>

@@ -19,6 +19,7 @@ export default function RunCard({ index, img, title, description }: RunCardProps
           loading="eager"
           src={img}
           width={1350}
+          preload
         />
       </div>
       <div className="pointer-events-none absolute top-1 right-1 block md:hidden">

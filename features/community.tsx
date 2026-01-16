@@ -2,11 +2,10 @@ import FullWidthTitle from '@/components/shared/full-width-title';
 import { BREAKPOINTS } from '@/constants';
 import { useMatchMedia } from '@/hooks/useMatchMedia';
 import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
 import clsx from 'clsx';
-import { Fragment, useRef, useState } from 'react';
+import gsap from 'gsap';
 import SplitText from 'gsap/dist/SplitText';
-import { useFontReady } from '@/hooks/useFontReady';
+import { Fragment, useRef, useState } from 'react';
 
 const communityItems = [
   {
@@ -50,7 +49,6 @@ export default function Community() {
   };
   const { contextSafe } = useGSAP();
   const isMobile = useMatchMedia(BREAKPOINTS.MD);
-  const fontReady = useFontReady();
 
   const ARROW_PATH = 'M1 1H13M13 1V13M13 1L1 13';
   const CROSS_PATH = 'M13 1L1 13M1 1L13 13';
@@ -131,14 +129,14 @@ export default function Community() {
   });
 
   useGSAP(() => {
-    if (!fontReady) return;
     revealAnimation();
-  }, [fontReady]);
+  }, []);
 
   return (
     <div
       ref={refs.communityRef}
       className="h-screen min-h-screen w-full bg-[url('/images/community.webp')] bg-cover bg-top px-4 py-16 md:px-8"
+      id="community"
     >
       <div className="mx-auto flex h-full max-w-[1440px] flex-col justify-between">
         <div className="flex flex-col items-start gap-4">
