@@ -1,11 +1,9 @@
 import { IconPlus } from '@/components/ui/icons';
-import { useRef } from 'react';
-import NextEvents from '../components/layout/next-events';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import SplitText from 'gsap/dist/SplitText';
-import { usePerformance } from '@/providers/performance.provider';
-import { PERFORMANCE_LEVEL } from '@/hooks/usePerformance';
+import { useRef } from 'react';
+import NextEvents from '../components/layout/next-events';
 
 export default function OurStory() {
   const refs = {
@@ -19,7 +17,6 @@ export default function OurStory() {
     img2Ref: useRef(null),
   };
   const { contextSafe } = useGSAP();
-  const { performanceLevel } = usePerformance();
 
   const revealAnimation = contextSafe(() => {
     if (!refs.subtitleRef.current) return;
