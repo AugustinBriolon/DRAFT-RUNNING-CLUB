@@ -4,9 +4,12 @@ import { IconRunTrace } from '../ui/icons';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
+import { scrollTo } from '@/utils/scroll-to.utils';
+import { useLenis } from 'lenis/react';
 
 const Footer = () => {
   const { contextSafe } = useGSAP();
+  const lenis = useLenis();
   const refs = {
     sectionRef: useRef<HTMLDivElement>(null),
     runTraceRef: useRef<SVGSVGElement>(null),
@@ -112,37 +115,72 @@ const Footer = () => {
             className="flex flex-col items-center justify-center gap-4 text-xs md:items-end md:justify-end"
           >
             <div className="overflow-hidden">
-              <Link className="block" href="#about">
+              <Link
+                className="group flex items-center justify-center"
+                href="#about"
+                onClick={(e) => scrollTo(e, lenis, '#about')}
+              >
+                <div className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-white transition-transform duration-300 group-hover:scale-100"></div>
                 About
               </Link>
             </div>
             <div className="overflow-hidden">
-              <Link className="block" href="#runs">
+              <Link
+                className="group flex items-center justify-center"
+                href="#runs"
+                onClick={(e) => scrollTo(e, lenis, '#runs')}
+              >
+                <div className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-white transition-transform duration-300 group-hover:scale-100"></div>
                 Runs
               </Link>
             </div>
             <div className="overflow-hidden">
-              <Link className="block" href="#community">
+              <Link
+                className="group flex items-center justify-center"
+                href="#community"
+                onClick={(e) => scrollTo(e, lenis, '#community')}
+              >
+                <div className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-white transition-transform duration-300 group-hover:scale-100"></div>
                 Community
               </Link>
             </div>
             <div className="overflow-hidden">
-              <Link className="block" href="#our-story">
+              <Link
+                className="group flex items-center justify-center"
+                href="#our-story"
+                onClick={(e) => scrollTo(e, lenis, '#our-story')}
+              >
+                <div className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-white transition-transform duration-300 group-hover:scale-100"></div>
                 Our Story
               </Link>
             </div>
             <div className="overflow-hidden">
-              <Link className="block" href="#gallery">
+              <Link
+                className="group flex items-center justify-center"
+                href="#gallery"
+                onClick={(e) => scrollTo(e, lenis, '#gallery', -100)}
+              >
+                <div className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-white transition-transform duration-300 group-hover:scale-100"></div>
                 Gallery
               </Link>
             </div>
             <div className="overflow-hidden">
-              <Link className="block" href="#faq">
+              <Link
+                className="group flex items-center justify-center"
+                href="#faq"
+                onClick={(e) => scrollTo(e, lenis, '#faq')}
+              >
+                <div className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-white transition-transform duration-300 group-hover:scale-100"></div>
                 FAQ
               </Link>
             </div>
             <div className="overflow-hidden">
-              <Link className="block" href="#join-us">
+              <Link
+                className="group flex items-center justify-center"
+                href="#join-us"
+                onClick={(e) => scrollTo(e, lenis, '#join-us')}
+              >
+                <div className="mr-2 h-1.5 w-1.5 scale-0 rounded-full bg-white transition-transform duration-300 group-hover:scale-100"></div>
                 Join Us
               </Link>
             </div>

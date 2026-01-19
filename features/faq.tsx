@@ -138,7 +138,7 @@ export default function FAQ() {
             return (
               <Fragment key={item.index}>
                 <div
-                  className="group/card-question group w-full py-4 md:py-6"
+                  className="group/card-question group w-full cursor-pointer py-4 md:py-6"
                   onClick={() => handleItemClick(index)}
                 >
                   <div className="grid w-full grid-cols-[30px_1fr_30px] items-center gap-16 text-left md:pointer-events-none">

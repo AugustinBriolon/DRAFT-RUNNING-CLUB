@@ -130,10 +130,10 @@ const Runs = () => {
         className="mt-16 grid grid-cols-1 gap-4 md:mt-32 md:grid-cols-2 lg:grid-cols-4"
       >
         <div className="col-span-1 flex items-end justify-start">
-          <p className="text-red text-md flex items-center justify-center gap-3 font-medium">
-            <span>[</span>
-            UPCOMING RUN
-            <span>]</span>
+          <p className="group text-red text-md flex items-center justify-center gap-3 font-medium">
+            <span className="transition-transform duration-300 group-hover:translate-x-1">[</span>
+            UPCOMING RUNS
+            <span className="transition-transform duration-300 group-hover:-translate-x-1">]</span>
           </p>
         </div>
         {runCard.map((card) => (

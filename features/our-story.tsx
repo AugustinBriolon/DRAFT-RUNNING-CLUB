@@ -10,7 +10,6 @@ import { PERFORMANCE_LEVEL } from '@/hooks/usePerformance';
 export default function OurStory() {
   const refs = {
     ourStoryRef: useRef(null),
-    titleRef: useRef(null),
     subtitleRef: useRef(null),
     iconRef: useRef(null),
     textRef: useRef(null),
@@ -50,17 +49,6 @@ export default function OurStory() {
           start: 'top 30%',
           // markers: true,
         },
-      })
-      .from(refs.titleRef.current, {
-        ...(performanceLevel === PERFORMANCE_LEVEL.HIGH
-          ? {
-              filter: 'blur(10px)',
-            }
-          : {
-              opacity: 0,
-            }),
-        duration: 0.8,
-        ease: 'power1.out',
       })
       .from(
         splitSubtitle.lines,
@@ -143,9 +131,7 @@ export default function OurStory() {
       id="our-story"
     >
       <div className="mx-auto flex h-full max-w-[1440px] flex-col items-center justify-start gap-8 md:gap-16">
-        <p ref={refs.titleRef} className="font-light text-white">
-          OUR STORY
-        </p>
+        <p className="font-light text-white">OUR STORY</p>
         <p ref={refs.subtitleRef} className="font-impact! max-w-xl text-center text-4xl text-white">
           RUNNING HAS ALWAYS BEEN MORE THAN SPORT. FROM ANCIENT MESSENGERS RACING BETWEEN CITIES,{' '}
           <span className="text-gray">
