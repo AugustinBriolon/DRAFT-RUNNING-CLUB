@@ -83,6 +83,7 @@ const Hero = () => {
       .from(
         [splitDescription.lines, copyright],
         {
+          delay: 0.2,
           yPercent: 100,
           duration: 1.2,
           ease: 'power2.out',

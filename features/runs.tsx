@@ -37,47 +37,46 @@ const Runs = () => {
     const cards = runsCardsRef.current?.querySelectorAll('.card-run');
 
     if (!paragraph) return;
-    document.fonts.ready.then(() => {
-      const splitParagraph = SplitText.create(paragraph, {
-        type: 'lines, words',
-        mask: 'lines',
-        aria: 'none',
-      });
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: runsRef.current,
-            start: 'top 30%',
-          },
-        })
-        .from(title || [], {
+
+    const splitParagraph = SplitText.create(paragraph, {
+      type: 'lines, words',
+      mask: 'lines',
+      aria: 'none',
+    });
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: runsRef.current,
+          start: 'top 30%',
+        },
+      })
+      .from(title || [], {
+        yPercent: 100,
+        duration: 0.8,
+        stagger: 0.05,
+        ease: 'power3.out',
+      })
+      .from(
+        splitParagraph.lines,
+        {
           yPercent: 100,
+          duration: 1.2,
+          ease: 'power3.out',
+          stagger: 0.05,
+        },
+        '<',
+      )
+      .from(
+        cards || [],
+        {
+          yPercent: 30,
+          opacity: 0,
           duration: 0.8,
           stagger: 0.05,
           ease: 'power3.out',
-        })
-        .from(
-          splitParagraph.lines,
-          {
-            yPercent: 100,
-            duration: 1.2,
-            ease: 'power3.out',
-            stagger: 0.05,
-          },
-          '<',
-        )
-        .from(
-          cards || [],
-          {
-            yPercent: 30,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.05,
-            ease: 'power3.out',
-          },
-          '<+=0.5',
-        );
-    });
+        },
+        '<+=0.5',
+      );
   });
 
   const parallaxAnimation = contextSafe(() => {
