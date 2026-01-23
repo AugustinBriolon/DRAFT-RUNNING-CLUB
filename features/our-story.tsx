@@ -112,8 +112,6 @@ export default function OurStory() {
 
     tlImage.from([refs.img1Ref.current, refs.img2Ref.current], {
       clipPath: 'inset(0 0 100% 0)',
-      duration: 1.5,
-      ease: 'power2.out',
     });
   });
 

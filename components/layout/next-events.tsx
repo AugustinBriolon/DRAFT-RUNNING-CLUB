@@ -61,13 +61,7 @@ export default function NextEvents() {
         scrollTrigger: {
           trigger: refs.nextEventsRef.current,
           start: 'top 65%',
-          scrub: true,
         },
-      })
-      .from(imagesTableRefs, {
-        clipPath: 'inset(0 0 100% 0)',
-        duration: 1.5,
-        ease: 'power2.out',
       })
       .from(
         splitTitle.words,
@@ -78,7 +72,20 @@ export default function NextEvents() {
           ease: 'power2.out',
         },
         '<',
-      )
+      );
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: refs.nextEventsRef.current,
+          start: 'top 65%',
+          scrub: true,
+        },
+      })
+      .from(imagesTableRefs, {
+        clipPath: 'inset(0 0 100% 0)',
+        stagger: 0.02,
+      })
       .from(
         [textTableRefs, descriptionTableRefs],
         {

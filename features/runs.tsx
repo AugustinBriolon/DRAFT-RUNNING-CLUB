@@ -69,11 +69,11 @@ const Runs = () => {
       .from(
         cards || [],
         {
-          yPercent: 30,
+          yPercent: 10,
           opacity: 0,
-          duration: 0.8,
+          duration: 1.2,
           stagger: 0.05,
-          ease: 'power3.out',
+          ease: 'power2.out',
         },
         '<+=0.5',
       );

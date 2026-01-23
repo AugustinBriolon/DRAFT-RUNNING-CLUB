@@ -100,9 +100,9 @@ export default function Community() {
         splitTitle.chars,
         {
           yPercent: 100,
-          duration: 0.8,
-          stagger: 0.01,
-          ease: 'power4.out',
+          duration: 1.2,
+          stagger: 0.02,
+          ease: 'power2.out',
         },
         '<',
       )

@@ -40,7 +40,7 @@ const ScrambleLink = ({ href, children, className = '', isJoinUs = false }: Scra
               text,
               tweenLength: false,
               chars: 'XO',
-              speed: 0.5,
+              speed: 0.1,
             },
           },
           index * 0.05,

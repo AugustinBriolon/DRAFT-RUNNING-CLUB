@@ -45,7 +45,7 @@ export default function JoinTheDrift() {
         {
           clipPath: 'inset(0 0 100% 0)',
           duration: 1.8,
-          ease: 'power3.out',
+          ease: 'power4.inOut',
           stagger: 0.05,
         },
         '<',
@@ -54,11 +54,11 @@ export default function JoinTheDrift() {
         splitText.lines,
         {
           yPercent: 100,
-          duration: 1.2,
+          duration: 1.8,
           ease: 'power2.out',
-          stagger: 0.03,
+          stagger: 0.05,
         },
-        '<',
+        '<+=0.5',
       );
   });
 
