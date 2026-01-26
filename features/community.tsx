@@ -23,7 +23,7 @@ const communityItems = [
     index: 3,
     title: 'CITY ADVENTURES',
     description:
-      'EXPLORING NEW BOROUGHS, HIDDEN STREETS, AND SECRET PATHS THAT ONLY RUNNING CAN REVEAL',
+      'EXPLORING NEW BOROUGHS, HIDDEN STREETS, AND SECRET PATHS THAT ONLY RUNNING CAN REVEAL.',
   },
   {
     index: 4,
@@ -39,7 +39,7 @@ const communityItems = [
 ];
 
 export default function Community() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number>(0);
   const refs = {
     communityRef: useRef<HTMLDivElement>(null),
     titleRef: useRef<HTMLDivElement>(null),
@@ -56,7 +56,7 @@ export default function Community() {
   const handleItemClick = contextSafe((index: number) => {
     if (!isMobile) return;
 
-    const newOpenIndex = index === openIndex ? null : index;
+    const newOpenIndex = index === openIndex ? 0 : index;
     setOpenIndex(newOpenIndex);
 
     Object.keys(refs.pathRefs.current).forEach((key) => {
@@ -91,7 +91,6 @@ export default function Community() {
       .timeline({
         scrollTrigger: {
           trigger: refs.communityRef.current,
-          toggleActions: 'play reverse play reverse',
           start: 'top 30%',
           // markers: true,
         },
@@ -187,7 +186,7 @@ export default function Community() {
                   <div
                     className={clsx(
                       'overflow-hidden transition-[height,padding] duration-300 ease-in-out md:hidden',
-                      isOpen ? 'h-12 pt-4' : 'h-0 pt-0',
+                      isOpen ? 'h-20 md:h-12 pt-4' : 'h-0 pt-0',
                     )}
                   >
                     <p className="font-bounded pb-4 pl-24 text-xs text-white/60">

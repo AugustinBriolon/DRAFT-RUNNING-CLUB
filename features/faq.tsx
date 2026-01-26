@@ -178,10 +178,10 @@ export default function FAQ() {
                   <div
                     className={clsx(
                       'overflow-hidden transition-[height,padding] duration-300 ease-in-out',
-                      isOpen ? 'h-26 pt-4 md:h-20' : 'h-0 pt-0',
+                      isOpen ? 'h-32 pt-4 md:h-20' : 'h-0 pt-0',
                     )}
                   >
-                    <p className="font-bounded mx-auto px-12 text-center text-xs text-white/60 md:max-w-2xl md:px-24">
+                    <p className="font-bounded mx-auto pl-23 text-xs text-white/60 md:max-w-2xl md:pl-0 md:text-center">
                       {item.description}
                     </p>
                   </div>

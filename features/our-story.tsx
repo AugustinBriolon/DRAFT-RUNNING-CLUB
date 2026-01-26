@@ -100,19 +100,19 @@ export default function OurStory() {
       );
     }
 
-    const tlImage = gsap.timeline({
-      scrollTrigger: {
-        trigger: refs.ourStoryRef.current,
-        start: 'top 20%',
-        end: 'bottom bottom',
-        scrub: true,
-        // markers: true,
-      },
-    });
-
-    tlImage.from([refs.img1Ref.current, refs.img2Ref.current], {
-      clipPath: 'inset(0 0 100% 0)',
-    });
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: refs.ourStoryRef.current,
+          start: 'top 20%',
+          end: 'bottom 20%',
+          scrub: true,
+          // markers: true,
+        },
+      })
+      .from([refs.img1Ref.current, refs.img2Ref.current], {
+        clipPath: 'inset(0 0 100% 0)',
+      });
   });
 
   useGSAP(() => {
@@ -120,12 +120,11 @@ export default function OurStory() {
   }, []);
 
   return (
-    <div
-      ref={refs.ourStoryRef}
-      className="h-fit min-h-screen w-full px-4 py-16 md:px-8"
-      id="our-story"
-    >
-      <div className="mx-auto flex h-full max-w-[1440px] flex-col items-center justify-start gap-8 md:gap-16">
+    <div className="h-fit min-h-screen w-full px-4 py-16 md:px-8" id="our-story">
+      <div
+        ref={refs.ourStoryRef}
+        className="mx-auto flex h-full max-w-[1440px] flex-col items-center justify-start gap-8 md:gap-16"
+      >
         <p className="font-light text-white">OUR STORY</p>
         <p ref={refs.subtitleRef} className="font-impact! max-w-xl text-center text-4xl text-white">
           RUNNING HAS ALWAYS BEEN MORE THAN SPORT. FROM ANCIENT MESSENGERS RACING BETWEEN CITIES,{' '}
@@ -174,8 +173,8 @@ export default function OurStory() {
             />
           </div>
         </div>
-        <NextEvents />
       </div>
+      <NextEvents />
     </div>
   );
 }

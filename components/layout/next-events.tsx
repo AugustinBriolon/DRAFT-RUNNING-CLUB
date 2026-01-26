@@ -106,7 +106,7 @@ export default function NextEvents() {
   return (
     <div
       ref={refs.nextEventsRef}
-      className="mt-32 grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5"
+      className="mx-auto mt-32 grid w-full max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5"
       id="gallery"
     >
       {eventCard.map((event) => (

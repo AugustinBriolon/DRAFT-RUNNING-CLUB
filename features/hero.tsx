@@ -30,7 +30,7 @@ const Hero = () => {
       })
       .from(children, {
         delay: 0.4,
-        yPercent: 100,
+        yPercent: 101,
         duration: 1.6,
         ease: 'power4.out',
         stagger: 0.05,
