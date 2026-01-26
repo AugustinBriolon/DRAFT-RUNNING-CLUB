@@ -186,7 +186,7 @@ export default function Community() {
                   <div
                     className={clsx(
                       'overflow-hidden transition-[height,padding] duration-300 ease-in-out md:hidden',
-                      isOpen ? 'h-20 md:h-12 pt-4' : 'h-0 pt-0',
+                      isOpen ? 'h-20 pt-4 md:h-12' : 'h-0 pt-0',
                     )}
                   >
                     <p className="font-bounded pb-4 pl-24 text-xs text-white/60">
