@@ -109,6 +109,22 @@ const Footer = () => {
                 All rights to original designs and trademarks belong to their respective owners.
               </p>
             </div>
+            <div className="mt-2 overflow-hidden">
+              <p>
+                Developed by{' '}
+                <Link className="underline" href="https://paranthese.studio" target="_blank">
+                  Paranthese Studio
+                </Link>
+              </p>
+            </div>
+            <div className="overflow-hidden">
+              <p>
+                Design by{' '}
+                <Link className="underline" href="https://www.behance.net/1d010476" target="_blank">
+                  Anna Diachenko
+                </Link>
+              </p>
+            </div>
           </div>
           <div
             ref={refs.linksContainerRef}
